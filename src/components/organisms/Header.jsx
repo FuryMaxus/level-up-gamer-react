@@ -1,5 +1,6 @@
 import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import NavButton from '../atoms/NavButton';
 
 export default function Header() {
   return (
@@ -20,13 +21,12 @@ export default function Header() {
             </div>
         </div>
         <nav id="header-bottom">
-            <button data-url="index.html" className="selected-button-header">Inicio</button>
-            <button data-url="catalogo.html">Catalogo</button>
-            <button data-url="levelUp.html" >Level Up</button>
-            <button data-url="noticias.html" >Noticias</button>
-            <button data-url="acercaDe.html" >Acerca de</button>
+            <NavButton text='Inicio' url ='/'/>
+            <NavButton text='Catalogo' url ='#'/>
+            <NavButton text='Level Up' url ='#'/>
+            <NavButton text='Noticias' url ='#'/>
+            <NavButton text='Acerca de' url ='#'/>
         </nav>  
-       
     </header>
   )
 }
