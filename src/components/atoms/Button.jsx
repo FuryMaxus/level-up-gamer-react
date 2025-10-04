@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import clsx from "clsx";
 
-export default function Button({text = "Button", url, variant}) {
+export default function Button({text = "", url, variant}) {
   const location = useLocation();
   const navigate = useNavigate();
   return (
@@ -17,6 +17,7 @@ export default function Button({text = "Button", url, variant}) {
           } 
     )}
     >
+      
       {text}
     </button>
 
