@@ -1,7 +1,7 @@
 import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Button from '../atoms/Button';
-import NavIcon from '../atoms/NavIcon';
+import Icon from '../atoms/Icon';
 
 export default function Header() {
   return (
@@ -16,9 +16,9 @@ export default function Header() {
                 </form>
             </div>
             <div id="session-buttons-container">
-                <NavIcon path="/carro" specialId="cart-icon" iconClass="fa-solid fa-cart-shopping icono-header" quantity={3}/>
-                <NavIcon path="/inicioSesion" iconClass="fa-regular fa-user icono-header"/>
-                <NavIcon path="/registro" iconClass="fa-solid fa-user-plus icono-header"/>
+                <Icon path="/carrito" variant="cart-icon" iconClass="fa-solid fa-cart-shopping icono-header" quantity={3}/>
+                <Icon path="/inicio-sesion" iconClass="fa-regular fa-user icono-header"/>
+                <Icon path="/registrarse" iconClass="fa-solid fa-user-plus icono-header"/>
             </div>
         </div>
         <nav id="header-bottom">

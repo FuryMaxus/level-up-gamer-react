@@ -113,11 +113,11 @@ header {
 
 }
 
-#cart-icon {
+.cart-icon {
     position: relative;
 }
 
-#cart-icon > span {
+.cart-icon > span {
     background-color: #1E90FF;
     display: flex;
     justify-content: center;
