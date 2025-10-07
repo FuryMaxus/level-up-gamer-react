@@ -8,7 +8,7 @@ export default function Footer() {
             <div>
                 <img src="images/Level-Up.png" alt="logo level-up gamer" id="logo"/>
                 <h3>Siguenos</h3>
-                <div class="contact-links-container">
+                <div className="contact-links-container">
                     <Icon path="#" iconClass="fa-brands fa-facebook"/>
                     <Icon path="#" iconClass="fa-brands fa-x-twitter"/>
                     <Icon path="#" iconClass="fa-brands fa-instagram"/>
@@ -17,7 +17,7 @@ export default function Footer() {
                 </div>
             </div>
             <form action="#" to='/'>
-                <label for="subscription-input"><h3>Mantente Informado</h3></label>
+                <label htmlFor="subscription-input"><h3>Mantente Informado</h3></label>
                 <input name="subscription-input" type="text" placeholder="Ingresa tu correo!"/>
                 <button>Suscribete</button>
             </form>

@@ -1,45 +1,14 @@
 import React from 'react'
 import Header from '../organisms/Header'
 import Footer from '../organisms/Footer'
+import CatalogLateralMenu from '../organisms/CatalogLateralMenu'
 
 export default function Catalog() {
   return (
     <>
       <Header/>
       <main id='catalog-main'>
-        <section id="lateral-menu">
-            <div id="category-name-container">
-                <h1 id="category-name">Computadores Gamers</h1>
-            </div>
-            <div >
-                <h2>Marcas</h2>
-                <div id="brands-container" className="radio-container"></div>
-            </div>
-            <div class="slider-container">
-                <h2>Limite de Precios</h2>
-                <label for="priceRange"></label>
-                <input type="range" id="priceRange" min="0" max="1000" value="1000" step="10"/>
-            </div>
-            <div class="radio-container">
-                <h2>Condicion</h2>
-                <label>
-                    <input type="radio" name="condition" value="all" checked/>
-                    Todos
-                </label>
-                <label>
-                    <input type="radio" name="condition" value="new"/>
-                    Nuevo
-                </label>
-                <label>
-                    <input type="radio" name="condition" value="open"/>
-                    Caja abierta
-                </label>
-                <label>
-                    <input type="radio" name="condition" value="second"/>
-                    Segunda mano
-                </label>
-            </div>
-        </section>
+        <CatalogLateralMenu/>
         <section id="main-catalog-container">
             <div id="category-selector-container">
                 <button id="btn-pc" className="btn-category current-category">
@@ -90,7 +59,7 @@ export default function Catalog() {
                     <option value="price-desc">Precio: Mayor a Menor</option>
                 </select>
                 <nav>
-                    <ul class="pagination-list">
+                    <ul className="pagination-list">
                         <li><a className="disabled-link" href="#prev">&laquo;</a></li>  
                         <li><a className="current-page active" href="#">1</a></li>
                         <li><a href="#">2</a></li>
@@ -105,7 +74,7 @@ export default function Catalog() {
             </div>
             <div id="bottom-menu" className="vertical-catalog-menu-container">
                 <nav>
-                    <ul class="pagination-list">
+                    <ul className="pagination-list">
                         <li><a className="disabled-link" href="#prev">&laquo;</a></li>
                         <li><a className="current-page active" href="#">1</a></li>
                         <li><a href="#">2</a></li>
