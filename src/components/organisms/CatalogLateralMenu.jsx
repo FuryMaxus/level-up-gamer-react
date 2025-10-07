@@ -4,14 +4,14 @@ import { CategoryBrands } from "../../data/CategoryBrands.js"
 
 export default function CatalogLateralMenu({selectedCategory = Categories.PC_GAMERS}) {
 
-    const categoryBrands = CategoryBrands.find((c) => c.category === selectedCategory)
+    const categoryBrands = CategoryBrands.find((c) => c.category === selectedCategory);
 
   return (
     <section id="lateral-menu">
             <div id="category-name-container">
                 <h1 id="category-name">Computadores Gamers</h1>
             </div>
-            <div >
+            <div>
                 <h2>Marcas</h2>
                 <div id="brands-container" className="radio-container">
                     {categoryBrands.brands.map(element => 

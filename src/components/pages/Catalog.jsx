@@ -2,6 +2,8 @@ import React from 'react'
 import Header from '../organisms/Header'
 import Footer from '../organisms/Footer'
 import CatalogLateralMenu from '../organisms/CatalogLateralMenu'
+import ProductGrid from '../organisms/ProductGrid'
+import CatalogCategorySelector from '../organisms/CatalogCategorySelector'
 
 export default function Catalog() {
   return (
@@ -10,48 +12,7 @@ export default function Catalog() {
       <main id='catalog-main'>
         <CatalogLateralMenu/>
         <section id="main-catalog-container">
-            <div id="category-selector-container">
-                <button id="btn-pc" className="btn-category current-category">
-                    <img src="images/pc_gamer_example.png" alt="pc gamer"/>
-                    <span>PCs Gamer</span>
-                </button>
-                <button className="btn-category" id="btn-table">
-                    <img src="images/table_top_game_example.png" alt=""/>
-                    <span>Juegos de mesa</span>
-                </button>
-                <button className="btn-category" id="btn-accesories">
-                    <img src="images/accesories_example.png" alt=""/>
-                    <span>Accesorios</span>
-                </button>
-                <button className="btn-category" id="btn-console">
-                    <img src="images/console_example.png" alt=""/>
-                    <span>Consolas</span>
-                </button>
-                <button className="btn-category" id="btn-chair">
-                    <img src="images/game_chair_example.png" alt=""/>
-                    <span>Sillas Gamer</span>
-                </button>
-                <button className="btn-category" id="btn-mouse">
-                    <img src="images/mouse_example.webp" alt=""/>
-                    <span>Mouses</span>
-                </button>
-                <button className="btn-category" id="btn-pad">
-                    <img src="images/mousepad_example.webp" alt=""/>
-                    <span>Mousepads</span>
-                </button>
-                <button className="btn-category" id="btn-polera">
-                    <img src="images/polera_example.webp" alt=""/>
-                    <span>Poleras</span>
-                </button>
-                <button className="btn-category" id="btn-poleron">
-                    <img src="images/poleron_example.png" alt=""/>
-                    <span>Polerones</span>
-                </button>
-                <button className="btn-category" id="btn-service">
-                    <img src="images/servicio_tecnico.png" alt=""/>
-                    <span>Servicio Tecnico</span>
-                </button>
-            </div>
+            <CatalogCategorySelector/>
             <div id="top-menu" className="vertical-catalog-menu-container">
                 <select>
                     <option value="recommended">Recomendado</option>
@@ -71,6 +32,7 @@ export default function Catalog() {
                 </nav>
             </div>
             <div id="product-grid">
+                <ProductGrid />
             </div>
             <div id="bottom-menu" className="vertical-catalog-menu-container">
                 <nav>

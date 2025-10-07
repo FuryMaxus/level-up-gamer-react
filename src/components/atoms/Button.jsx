@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import clsx from "clsx";
 
-export default function Button({text = "", url, variant}) {
+export default function Button({text = "", url, variant, img=false, imgPath}) {
   const location = useLocation();
   const navigate = useNavigate();
   return (
@@ -18,7 +18,11 @@ export default function Button({text = "", url, variant}) {
     )}
     >
       
+        
+      {img ? <img src={imgPath} alt={text}></img> : null }
+     
       {text}
+
     </button>
 
   )
