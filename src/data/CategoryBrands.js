@@ -145,6 +145,20 @@ export const CategoryBrands = [
             {id:15, name:"Thermaltake"},
             {id:16, name:"Xtrfy"},
         ]
+    },
+    {
+        id: 8,
+        category: Categories.SHIRTS,
+        brands: [
+            {id:1, name:"Level-Up Gamer"},
+        ]
+    },
+    {
+        id: 9,
+        category: Categories.HOODIES,
+        brands: [
+            {id:1, name:"Level-Up Gamer"},
+        ]
     }
 ]
 

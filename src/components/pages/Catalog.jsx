@@ -1,18 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../organisms/Header'
 import Footer from '../organisms/Footer'
 import CatalogLateralMenu from '../organisms/CatalogLateralMenu'
 import ProductGrid from '../organisms/ProductGrid'
 import CatalogCategorySelector from '../organisms/CatalogCategorySelector'
+import { Categories } from '../../data/Categories'
 
 export default function Catalog() {
+
+    const [category, setCategory] = useState(Categories.PC_GAMERS);
+    const [brand, setBrand] = useState("all");
+    const [condition, setCondition] = useState("all");
+
   return (
     <>
       <Header/>
       <main id='catalog-main'>
-        <CatalogLateralMenu/>
+        <CatalogLateralMenu
+            selectedCategory={category}
+            setCategory={setCategory}
+            brand={brand}
+            setBrand={setBrand}
+            condition={condition}
+            setCondition={setCondition}
+        />
         <section id="main-catalog-container">
-            <CatalogCategorySelector/>
+            <CatalogCategorySelector category={category} setCategory={setCategory}/>
             <div id="top-menu" className="vertical-catalog-menu-container">
                 <select>
                     <option value="recommended">Recomendado</option>
@@ -32,7 +45,7 @@ export default function Catalog() {
                 </nav>
             </div>
             <div id="product-grid">
-                <ProductGrid />
+                <ProductGrid category={category}/>
             </div>
             <div id="bottom-menu" className="vertical-catalog-menu-container">
                 <nav>

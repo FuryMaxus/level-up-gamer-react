@@ -1,20 +1,46 @@
 import React from 'react'
 import Button from '../atoms/Button'
+import clsx from 'clsx';
+import { Categories } from '../../data/Categories';
 
-export default function CatalogCategorySelector() {
+export default function CatalogCategorySelector({category,setCategory}) {
+
+ 
+  const categoryButtons = [
+    { label: "PCs Gamer", value: Categories.PC_GAMERS, img: "images/pc_gamer_example.png" },
+    { label: "Juegos de mesa", value: Categories.BOARD_GAMES, img: "images/table_top_game_example.png" },
+    { label: "Accesorios", value: Categories.ACCESORIES, img: "images/accesories_example.png" },
+    { label: "Consolas", value: Categories.CONSOLES, img: "images/console_example.png" },
+    { label: "Sillas Gamer", value: Categories.CHAIRS, img: "images/game_chair_example.png" },
+    { label: "Mouses", value: Categories.MOUSES, img: "images/mouse_example.webp" },
+    { label: "Mousepads", value: Categories.MOUSE_PADS, img: "images/mousepad_example.webp" },
+    { label: "Poleras", value: Categories.SHIRTS, img: "images/polera_example.webp" },
+    { label: "Polerones", value: Categories.HOODIES, img: "images/poleron_example.png" },
+    { label: "Servicio Técnico", value: "Servicio Técnico", img: "images/servicio_tecnico.png" },
+  ];
+
+
+  const handleCategoryClick = (newCategory) => {
+    setCategory(newCategory);
+  }
+
+
   return (
     <div id="category-selector-container">
 
-        <Button text='PCs Gamer' variant="btn-category current-category" img={true} imgPath="images/pc_gamer_example.png" />
-        <Button text='Juegos de mesa' variant="btn-category" img={true} imgPath="images/table_top_game_example.png" />
-        <Button text='Accesorios' variant="btn-category" img={true} imgPath="images/accesories_example.png" />
-        <Button text='Consolas' variant="btn-category" img={true} imgPath="images/console_example.png" />
-        <Button text='Sillas Gamer' variant="btn-category" img={true} imgPath="images/game_chair_example.png" />
-        <Button text='Mouses' variant="btn-category" img={true} imgPath="images/mouse_example.webp" />
-        <Button text='Mousepads' variant="btn-category" img={true} imgPath="images/mousepad_example.webp" />
-        <Button text='Poleras' variant="btn-category" img={true} imgPath="images/polera_example.webp" />
-        <Button text='Polerones' variant="btn-category" img={true} imgPath="images/poleron_example.png" />
-        <Button text='Servicio Técnico' variant="btn-category" img={true} imgPath="images/servicio_tecnico.png" />
+      {categoryButtons.map((c) => (
+          <Button
+            key={c.value}
+            onClick={() => handleCategoryClick(c.value)}
+            text={c.label}
+            variant={clsx(
+              "btn-category", {"current-category": category === c.value}
+            )}
+            img
+            imgPath={c.img}
+          />
+
+        ))}
 
     </div>
   )

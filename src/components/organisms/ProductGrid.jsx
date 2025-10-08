@@ -3,9 +3,9 @@ import { Categories } from "../../data/Categories.js"
 import { Products } from "../../data/Products.js"
 import ProductDisplay from '../molecules/ProductDisplay.jsx';
 
-export default function ProductGrid({selectedCategory = Categories.PC_GAMERS}) {
+export default function ProductGrid({category}) {
 
-    const products = Products.filter((p) => p.category === selectedCategory);
+    const products = Products.filter((p) => p.category === category);
     
     
   return (

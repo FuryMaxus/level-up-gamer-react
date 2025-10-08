@@ -2,12 +2,23 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import clsx from "clsx";
 
-export default function Button({text = "", url, variant, img=false, imgPath}) {
+export default function Button({text = "", url, variant, img=false, imgPath, onClick}) {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    if(onClick) {
+      onClick();
+    } else if(url){
+        navigate(url);
+    }
+  }
+
+
+
   return (
     <button 
-      onClick={() => navigate(url)}
+      onClick={handleClick}
       className={
         clsx(variant,
           {
