@@ -1,11 +1,10 @@
 import React from 'react'
-import { Categories } from "../../data/Categories.js"
 import { CategoryBrands } from "../../data/CategoryBrands.js"
 import RadioGroup from '../molecules/RadioGroup.jsx';
 
 export default function CatalogLateralMenu(
     {
-        selectedCategory,
+        category,
         brand,
         setBrand,
         condition,
@@ -13,10 +12,11 @@ export default function CatalogLateralMenu(
     }
 ) {
 
-    const categoryBrands = CategoryBrands.find((c) => c.category === selectedCategory);
+    const categoryBrands = CategoryBrands.find((c) => c.category === category);
 
   return (
     <section id="lateral-menu">
+
             <div id="category-name-container">
                 <h1 id="category-name">Computadores Gamers</h1>
             </div>

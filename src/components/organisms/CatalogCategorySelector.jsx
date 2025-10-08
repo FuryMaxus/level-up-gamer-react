@@ -6,7 +6,7 @@ import { Categories } from '../../data/Categories';
 export default function CatalogCategorySelector({category,setCategory}) {
 
  
-  const categoryButtons = [
+  const categoryButtonsData = [
     { label: "PCs Gamer", value: Categories.PC_GAMERS, img: "images/pc_gamer_example.png" },
     { label: "Juegos de mesa", value: Categories.BOARD_GAMES, img: "images/table_top_game_example.png" },
     { label: "Accesorios", value: Categories.ACCESORIES, img: "images/accesories_example.png" },
@@ -28,12 +28,12 @@ export default function CatalogCategorySelector({category,setCategory}) {
   return (
     <div id="category-selector-container">
 
-      {categoryButtons.map((c) => (
+      {categoryButtonsData.map((c) => (
           <Button
             key={c.value}
             onClick={() => handleCategoryClick(c.value)}
             text={c.label}
-            variant={clsx(
+            className={clsx(
               "btn-category", {"current-category": category === c.value}
             )}
             img

@@ -1,9 +1,8 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import clsx from "clsx";
 
-export default function Button({text = "", url, variant, img=false, imgPath, onClick}) {
-  const location = useLocation();
+export default function Button({text = "", url,img=false, imgPath, onClick, ...props}) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -14,22 +13,11 @@ export default function Button({text = "", url, variant, img=false, imgPath, onC
     }
   }
 
-
-
   return (
     <button 
       onClick={handleClick}
-      className={
-        clsx(variant,
-          {
-            "selected-button-header":
-            variant === "header-button" &&
-            location.pathname === url,
-          } 
-    )}
+      {...props}
     >
-      
-        
       {img ? <img src={imgPath} alt={text}></img> : null }
      
       {text}

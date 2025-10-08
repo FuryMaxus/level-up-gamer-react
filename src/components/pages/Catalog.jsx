@@ -17,7 +17,7 @@ export default function Catalog() {
       <Header/>
       <main id='catalog-main'>
         <CatalogLateralMenu
-            selectedCategory={category}
+            category={category}
             setCategory={setCategory}
             brand={brand}
             setBrand={setBrand}

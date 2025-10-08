@@ -2,8 +2,22 @@ import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Button from '../atoms/Button';
 import Icon from '../atoms/Icon';
+import { useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 
 export default function Header() {
+
+    const location = useLocation();
+
+    const headerButtonsData = [
+        { text: 'Inicio', url: '/' },
+        { text: 'Catalogo', url: '/catalogo' },
+        { text: 'Level Up', url: '/level-up' },
+        { text: 'Noticias', url: '/noticias' },
+        { text: 'Acerca de', url: '/acerca-de' },
+     ];
+
+
   return (
     <header>
         <div id="header-top">
@@ -22,12 +36,17 @@ export default function Header() {
             </div>
         </div>
         <nav id="header-bottom">
-            <Button text='Inicio' url ='/' variant="header-button"/>
-            <Button text='Catalogo' url ='/catalogo' variant="header-button"/>
-            <Button text='Level Up' url ='/level-up' variant="header-button"/>
-            <Button text='Noticias' url ='/noticias' variant="header-button"/>
-            <Button text='Acerca de' url ='/acerca-de' variant="header-button"/>
-        </nav>  
+            {headerButtonsData.map((btn) => (
+                <Button
+                    key={btn.url}
+                    text={btn.text}
+                    url={btn.url}
+                    className={clsx("header-button", {
+                    "selected-button-header": location.pathname === btn.url
+                    })}
+                />
+            ))}
+        </nav>
     </header>
   )
 }
