@@ -35,7 +35,7 @@ export default function CatalogLateralMenu(
                 onChange={setBrand}
             />
            
-                {/* Esto tengo que arreglarlo que no funciona */}
+            {/* Esto tengo que arreglarlo que no funciona */}
             <div className="slider-container">
                 <h2>Limite de Precios</h2>
                 <label htmlFor="priceRange"></label>

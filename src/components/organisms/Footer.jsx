@@ -36,6 +36,7 @@ export default function Footer() {
         <div id="footer-bottom">
             <div><span>2025 Level Up Gamer</span>. Todos los derechos reservados</div>
         </div>
+        <img id="whatsaap-absolute" src="images/whatsaap_icon.png" alt="whatsaap"></img>
     </footer>
   )
 }
