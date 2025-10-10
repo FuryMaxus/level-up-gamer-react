@@ -1,18 +1,12 @@
 import React from 'react'
 import { CategoryBrands } from "../../data/CategoryBrands.js"
 import RadioGroup from '../molecules/RadioGroup.jsx';
+import Slider from '../atoms/Slider.jsx';
 
-export default function CatalogLateralMenu(
-    {
-        category,
-        brand,
-        setBrand,
-        condition,
-        setCondition,
-    }
-) {
+export default function CatalogLateralMenu(props) {
 
-    const categoryBrands = CategoryBrands.find((c) => c.category === category);
+    const  {category,brand,setBrand,condition,setCondition,brandSet} = props
+
 
   return (
     <section id="lateral-menu">
@@ -26,21 +20,16 @@ export default function CatalogLateralMenu(
                 name="brands"
                 options={[
                     { label: "Todas", value: "all" },
-                    ...categoryBrands.brands.map((b) =>({
-                    label: b.name,
-                    value: b.name
+                    ...[...brandSet].map((b) =>({
+                    label: b,
+                    value: b
                     }))
                 ]}
                 selected={brand}
                 onChange={setBrand}
             />
            
-            {/* Esto tengo que arreglarlo que no funciona */}
-            <div className="slider-container">
-                <h2>Limite de Precios</h2>
-                <label htmlFor="priceRange"></label>
-                <input type="range" id="priceRange" min="0" max="1000" value="1000" step="10"/>
-            </div>
+            <Slider title="Limite de precios" id="slider-filtro-precios" max={950000}/>
             
             <RadioGroup
                 title="Condicion"

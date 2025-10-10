@@ -2,7 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import clsx from "clsx";
 
-export default function Button({text = "", url,img=false, imgPath, onClick, ...props}) {
+export default function Button(props) {
+  const {text = "", url,img=false, imgPath, onClick, ...extraProps} = props
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -16,7 +17,7 @@ export default function Button({text = "", url,img=false, imgPath, onClick, ...p
   return (
     <button 
       onClick={handleClick}
-      {...props}
+      {...extraProps}
     >
       {img ? <img src={imgPath} alt={text}></img> : null }
      

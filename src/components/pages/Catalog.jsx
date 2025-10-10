@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
+import '../../styles/Catalog.css'
 import Header from '../organisms/Header'
 import Footer from '../organisms/Footer'
 import CatalogLateralMenu from '../organisms/CatalogLateralMenu'
 import ProductGrid from '../organisms/ProductGrid'
 import CatalogCategorySelector from '../organisms/CatalogCategorySelector'
 import { Categories } from '../../data/Categories'
+import PaginationNav from '../molecules/PaginationNav'
+import { Products } from '../../data/Products'
+
 
 export default function Catalog() {
 
@@ -12,6 +16,12 @@ export default function Catalog() {
     const [brand, setBrand] = useState("all");
     const [condition, setCondition] = useState("all");
 
+    const products = Products.filter((p) => p.category === category);
+    const brandSet = new Set(products.map((p) => p.brand));
+    if(brand != "all") {
+        products.filter((p) => p.brand == brand);
+    }
+    
   return (
     <>
       <Header/>
@@ -23,6 +33,7 @@ export default function Catalog() {
             setBrand={setBrand}
             condition={condition}
             setCondition={setCondition}
+            brandSet = {brandSet}
         />
         <section id="main-catalog-container">
             <CatalogCategorySelector category={category} setCategory={setCategory}/>
@@ -32,33 +43,13 @@ export default function Catalog() {
                     <option value="price-asc">Precio: Menor a Mayor</option>
                     <option value="price-desc">Precio: Mayor a Menor</option>
                 </select>
-                <nav>
-                    <ul className="pagination-list">
-                        <li><a className="disabled-link" href="#prev">&laquo;</a></li>  
-                        <li><a className="current-page active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a className="disabled-link" href="#">...</a></li>
-                        <li><a href="#">50</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </nav>
+                <PaginationNav />
             </div>
             <div id="product-grid">
-                <ProductGrid category={category}/>
+                <ProductGrid products={products}/>
             </div>
             <div id="bottom-menu" className="vertical-catalog-menu-container">
-                <nav>
-                    <ul className="pagination-list">
-                        <li><a className="disabled-link" href="#prev">&laquo;</a></li>
-                        <li><a className="current-page active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a className="disabled-link" href="#">...</a></li>
-                        <li><a href="#">50</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </nav>
+                <PaginationNav />
             </div>
         </section>
     </main>

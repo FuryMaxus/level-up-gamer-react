@@ -1,11 +1,11 @@
 import React from 'react'
 import Button from '../atoms/Button';
 
-export default function ProductDisplay({producto}) {
-
-    if (!producto) return null;
+export default function ProductDisplay(props) {
+    const {producto} = props
+    
   return (
-    <div class="product">
+    <div className="product">
                 <img src={producto.imgRute} alt= {producto.name} />
                 <div className="product-info">
                     <p>{producto.brand}</p>
