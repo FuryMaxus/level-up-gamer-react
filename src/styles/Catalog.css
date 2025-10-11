@@ -214,6 +214,7 @@
     align-items: center;
     gap: 3px;
     padding: 10px 0px;
+    overflow: hidden;
 }
 
 .product:hover {
@@ -223,6 +224,8 @@
 .product > img {
     height: 225px;
     cursor: pointer;
+    object-fit: cover;
+    
 }
 
 .product-info {
@@ -235,17 +238,17 @@
     cursor: pointer;
 }
 
-.product-info > p:nth-child(3){
+.product-info > p:nth-child(4){
     font-size: 23px;
     color: #39FF14;
 }
 
-.product-info > p:nth-child(1){
+.product-info > p:nth-child(1), .product-info > p:nth-child(3){
     color: #D3D3D3;
     font-size: 13px;
 }
 
-.product:hover > .product-info > p:nth-child(3){
+.product:hover > .product-info > p:nth-child(4){
     color: #1E90FF;
 }
 

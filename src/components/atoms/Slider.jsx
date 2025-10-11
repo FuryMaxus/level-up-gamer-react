@@ -6,7 +6,7 @@ export default function Slider(props) {
     const [sliderValue,setSliderValue] = useState(max);
 
     const handleChange = (event,newValue) => {
-        setSliderValue(parseInt(event.target.value,newValue));
+        setSliderValue(parseInt(event.target.value),newValue);
     }
 
   return (
@@ -14,7 +14,7 @@ export default function Slider(props) {
                 <h2>{title}</h2>
                 <label htmlFor={id}></label>
                 <input type="range" id={id} min="0" max={max} value= {sliderValue} step="50000" onChange={handleChange}/>
-                <p>Limite: ${sliderValue}</p>
+                <p>Limite: {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(sliderValue)}</p>
     </div>
 
   )

@@ -5,14 +5,22 @@ import Slider from '../atoms/Slider.jsx';
 
 export default function CatalogLateralMenu(props) {
 
-    const  {category,brand,setBrand,condition,setCondition,brandSet} = props
+    const {
+        category,
+        brand,
+        setBrand,
+        condition,
+        setCondition,
+        brandSet,
+        products} = props
 
-
+    
+    
   return (
     <section id="lateral-menu">
 
             <div id="category-name-container">
-                <h1 id="category-name">Computadores Gamers</h1>
+                <h1 id="category-name">{category}</h1>
             </div>
             
             <RadioGroup 
@@ -29,7 +37,11 @@ export default function CatalogLateralMenu(props) {
                 onChange={setBrand}
             />
            
-            <Slider title="Limite de precios" id="slider-filtro-precios" max={950000}/>
+            <Slider 
+                title="Limite de precios" 
+                id="slider-filtro-precios" 
+                max={999999}
+            />
             
             <RadioGroup
                 title="Condicion"
@@ -38,7 +50,7 @@ export default function CatalogLateralMenu(props) {
                     {label: "Todos", value: "all"},
                     {label: "Nuevo", value: "new"},
                     {label: "Caja abierta", value: "open"},
-                    {label: "Segunda Mano", value: "second"}  
+                    {label: "Segunda mano", value: "second"}  
                 ]}
                 selected={condition}
                 onChange={setCondition}

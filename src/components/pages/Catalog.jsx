@@ -15,12 +15,16 @@ export default function Catalog() {
     const [category, setCategory] = useState(Categories.PC_GAMERS);
     const [brand, setBrand] = useState("all");
     const [condition, setCondition] = useState("all");
+    const productsFilterByCategory = Products.filter((p) => p.category === category);
+    
+    const brandSet = new Set(productsFilterByCategory.map((p) => p.brand));
 
-    const products = Products.filter((p) => p.category === category);
-    const brandSet = new Set(products.map((p) => p.brand));
-    if(brand != "all") {
-        products.filter((p) => p.brand == brand);
-    }
+    const productsFinal = productsFilterByCategory.filter((p) => 
+      (brand === "all" || p.brand === brand) && 
+      (condition === "all" || p.condition === condition)
+    );
+
+
     
   return (
     <>
@@ -34,9 +38,10 @@ export default function Catalog() {
             condition={condition}
             setCondition={setCondition}
             brandSet = {brandSet}
+            products = {productsFinal}
         />
         <section id="main-catalog-container">
-            <CatalogCategorySelector category={category} setCategory={setCategory}/>
+            <CatalogCategorySelector category={category} setCategory={setCategory} setBrand={setBrand}/>
             <div id="top-menu" className="vertical-catalog-menu-container">
                 <select>
                     <option value="recommended">Recomendado</option>
@@ -46,7 +51,7 @@ export default function Catalog() {
                 <PaginationNav />
             </div>
             <div id="product-grid">
-                <ProductGrid products={products}/>
+                <ProductGrid products={productsFinal}/>
             </div>
             <div id="bottom-menu" className="vertical-catalog-menu-container">
                 <PaginationNav />

@@ -3,8 +3,8 @@ import Button from '../atoms/Button'
 import clsx from 'clsx';
 import { Categories } from '../../data/Categories';
 
-export default function CatalogCategorySelector({category,setCategory}) {
-
+export default function CatalogCategorySelector(props) {
+  const {category,setCategory,setBrand} = props;
  
   const categoryButtonsData = [
     { label: "PCs Gamer", value: Categories.PC_GAMERS, img: "images/pc_gamer_example.png" },
@@ -22,6 +22,7 @@ export default function CatalogCategorySelector({category,setCategory}) {
 
   const handleCategoryClick = (newCategory) => {
     setCategory(newCategory);
+    setBrand("all");
   }
 
 
