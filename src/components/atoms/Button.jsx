@@ -1,23 +1,28 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import clsx from "clsx";
 
-export default function Button({text = "Button", url, variant}) {
-  const location = useLocation();
+export default function Button(props) {
+  const {text = "", url,img=false, imgPath, onClick, ...extraProps} = props
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    if(onClick) {
+      onClick();
+    } else if(url){
+        navigate(url);
+    }
+  }
+
   return (
     <button 
-      onClick={() => navigate(url)}
-      className={
-        clsx(variant,
-          {
-            "selected-button-header":
-            variant === "header-button" &&
-            location.pathname === url,
-          } 
-    )}
+      onClick={handleClick}
+      {...extraProps}
     >
+      {img ? <img src={imgPath} alt={text}></img> : null }
+     
       {text}
+
     </button>
 
   )

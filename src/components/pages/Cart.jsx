@@ -7,7 +7,6 @@ export default function Cart() {
     <>
       <Header/>
       <Footer/>
-      <img id="whatsaap-absolute" src="images/whatsaap_icon.png" alt="whatsaap"></img>
     </>
   )
 }
