@@ -17,6 +17,10 @@ export default function Header() {
     { text: 'Acerca de', url: '/acerca-de' },
   ];
 
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+
+  const productQuantity = products.length;
+
 
   return (
     <header>
@@ -30,7 +34,7 @@ export default function Header() {
           </form>
         </div>
         <div id="session-buttons-container">
-          <Icon path="/carrito" variant="cart-icon" iconClass="fa-solid fa-cart-shopping icono-header" quantity={3}/>
+          <Icon path="/carrito" variant="cart-icon" iconClass="fa-solid fa-cart-shopping icono-header" quantity={productQuantity}/>
           <Icon path="/inicio-sesion" iconClass="fa-regular fa-user icono-header"/>
           <Icon path="/registrarse" iconClass="fa-solid fa-user-plus icono-header"/>
         </div>
