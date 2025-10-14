@@ -1,32 +1,78 @@
 import React, { useState } from 'react'
 import Button from '../atoms/Button';
 
-export default function CartList() {
+export default function CartList(props) {
   
-  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const {checkedItems,setCheckedItems,cartProducts, setCartProducts} = props;
+ 
   
+
+  const handleChange = (item) => {
+    setCheckedItems((prev) => ({
+      ...prev,
+      [item]: !prev[item]
+    }));
+  };
+
+  const handleSelectAll = (checked) => {
+  if (checked) {
+    const allChecked = {};
+    cartProducts.forEach((p) => {
+      allChecked[p.id] = true;
+    });
+    setCheckedItems(allChecked);
+  } else {
+    setCheckedItems({});
+  }
+};
+
+const handleDelete = (id) => {
+
+  const updatedCartProducts = cartProducts.filter((p) => p.id !== id);
+  localStorage.setItem("cartProducts", JSON.stringify(updatedCartProducts));
+  setCartProducts(updatedCartProducts);
+  setCheckedItems((prev) => {
+    const copy = { ...prev };
+    delete copy[id];
+    return copy;
+  });
+};
+
   return (
     <section id="cart-products-container">
-          <h1>Carro</h1>
-          <div id="checkbox-select-all-container">
-            <input type="checkbox" name="" id="" checked/>
-            <label for="">Seleccionar todos</label>
-          </div>
-          <hr/>
-          {
-            products.map(p => (
-              <div class="cart-product">
-              <input type="checkbox" name="cart-product-selected" id="product1" checked/>
-              <img src={p.imgUrl} alt=""/>
-              <div>
-                  <h3>{p.name}</h3>
-                  <p>{p.brand}</p>
-              </div>
-              <div>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(p.price)}</div>
-              <Button text="Eliminar" onClick = {()=>localStorage.removeItem('products')}/>
-          </div>
-            ))
+      <h1>Carro</h1>
+      <div id="checkbox-select-all-container">
+        <input 
+          type="checkbox" 
+          id="cart-check-all" 
+          checked={
+            Object.keys(checkedItems).length === cartProducts.length && cartProducts.length > 0
           }
-        </section>
+          
+          onChange={(e) => handleSelectAll(e.target.checked)}
+        />
+        <label htmlFor="">Seleccionar todos</label>
+      </div>
+      <hr/>
+      {cartProducts.map(p => (
+          <div className="cart-product" id={p.id} >
+            <div>
+              <input 
+                type="checkbox" 
+                name="cart-product-selected" 
+                checked={!!checkedItems[p.id]} 
+                onChange={() => handleChange(p.id)}
+              />
+            </div>
+            <img src={p.imgUrl} alt=""/>
+            <div>
+              <h3>{p.name}</h3>
+              <p>{p.brand}</p>
+            </div>
+            <div>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(p.price)}</div>
+            <Button text="Eliminar" onClick={() => handleDelete(p.id)} />
+        </div>
+        ))}
+    </section>
   )
 }

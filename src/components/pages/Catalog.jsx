@@ -10,7 +10,9 @@ import PaginationNav from '../molecules/PaginationNav'
 import { Products } from '../../data/Products'
 
 
-export default function Catalog() {
+export default function Catalog(props) {
+
+  const {cartProducts,setCartProducts} = props;
 
   const [category, setCategory] = useState(Categories.PC_GAMERS);
   const [brand, setBrand] = useState("all");
@@ -51,10 +53,16 @@ export default function Catalog() {
       return 0;
     });
 
+  const handleAddToCart = (product) => {
+    const updatedProducts = [...cartProducts, product];
+
+    setCartProducts(updatedProducts);
+
+    localStorage.setItem("cartProducts", JSON.stringify(updatedProducts));
+  };
+
 
   return (
-    <>
-      <Header/>
       <main id='catalog-main'>
         <CatalogLateralMenu
           category={category}
@@ -80,14 +88,12 @@ export default function Catalog() {
             <PaginationNav />
           </div>
           <div id="product-grid">
-            <ProductGrid products={productsFinal}/>
+            <ProductGrid products={productsFinal} handleAddToCart = {handleAddToCart}/>
           </div>
           <div id="bottom-menu" className="vertical-catalog-menu-container">
             <PaginationNav />
           </div>
         </section>
       </main>
-      <Footer/>
-    </>
   )
 }

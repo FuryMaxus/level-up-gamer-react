@@ -5,7 +5,9 @@ import Icon from '../atoms/Icon';
 import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 
-export default function Header() {
+export default function Header(props) {
+
+  const {cartProducts} = props;
 
   const location = useLocation();
 
@@ -17,9 +19,7 @@ export default function Header() {
     { text: 'Acerca de', url: '/acerca-de' },
   ];
 
-  const products = JSON.parse(localStorage.getItem("products")) || [];
-
-  const productQuantity = products.length;
+  const productQuantity = cartProducts.length;
 
 
   return (

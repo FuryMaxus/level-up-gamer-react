@@ -5,8 +5,6 @@ import Footer from '../organisms/Footer'
 export default function Home() {
   return (
     <>
-      <Header/>
-      <Footer/>
     </>
     
     

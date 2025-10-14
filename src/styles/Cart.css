@@ -38,6 +38,9 @@ hr{
     accent-color: #1E90FF;
     width: 30px;
     height: 30px;
+    transform: scale(1); 
+    margin: 0; 
+    vertical-align: middle;
 }
 
 .cart-product{

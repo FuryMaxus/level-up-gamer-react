@@ -3,8 +3,10 @@ import Button from '../atoms/Button';
 
 export default function ProductDisplay(props) {
 
-  const {product} = props
+  const {product,handleAddToCart} = props
   
+  
+
   return (
     <div className="product">
       <img src={product.imgUrl} alt= {product.name} />
@@ -14,19 +16,14 @@ export default function ProductDisplay(props) {
           <p>{correctConditionText(product.condition)}</p>
           <p>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.price)}</p>
       </div>
-      <Button text='Añadir al carro' onClick={()=>addToCart(product)} />
+      <Button text='Añadir al carro' onClick={()=>handleAddToCart(product)} />
     </div>
   )
 }
 
 
 
-function addToCart(product) {
-    const products = JSON.parse(localStorage.getItem("products")) || []
-    products.push(product)
-    localStorage.setItem("products", JSON.stringify(products))
-    
-}
+
 
 function correctConditionText(t){
   if(t == 'new'){

@@ -5,8 +5,7 @@ import Footer from '../organisms/Footer'
 export default function Login() {
   return (
     <>
-      <Header/>
-      <Footer/>
+
     </>
   )
 }

@@ -5,8 +5,7 @@ import Footer from '../organisms/Footer'
 export default function News() {
   return (
     <>
-      <Header/>
-      <Footer/>
+
     </>
   )
 }

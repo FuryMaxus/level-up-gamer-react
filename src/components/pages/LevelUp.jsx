@@ -5,8 +5,7 @@ import Footer from '../organisms/Footer'
 export default function LevelUp() {
   return (
     <>
-      <Header/>
-      <Footer/>
+
     </>
   )
 }
