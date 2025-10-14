@@ -1,5 +1,4 @@
 import React from 'react'
-import { CategoryBrands } from "../../data/CategoryBrands.js"
 import RadioGroup from '../molecules/RadioGroup.jsx';
 import Slider from '../atoms/Slider.jsx';
 
@@ -9,8 +8,8 @@ export default function CatalogLateralMenu(props) {
     category,
     brand,
     setBrand,
-    condition,
-    setCondition,
+    productCondition,
+    setProductCondition,
     brandSet,
     selectedPrice,
     setSelectedPrice,
@@ -50,15 +49,15 @@ export default function CatalogLateralMenu(props) {
       
       <RadioGroup
         title="Condicion"
-        name="condition"
+        name="productCondition"
         options={[
           {label: "Todos", value: "all"},
           {label: "Nuevo", value: "new"},
           {label: "Caja abierta", value: "open"},
           {label: "Segunda mano", value: "second"}  
         ]}
-        selected={condition}
-        onChange={setCondition}
+        selected={productCondition}
+        onChange={setProductCondition}
       />
     </section>
   )

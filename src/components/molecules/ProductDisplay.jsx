@@ -3,10 +3,8 @@ import Button from '../atoms/Button';
 
 export default function ProductDisplay(props) {
 
-  const {product,handleAddToCart} = props
+  const {product,handleAddToCart} = props;
   
-  
-
   return (
     <div className="product">
       <img src={product.imgUrl} alt= {product.name} />

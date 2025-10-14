@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Header from '../organisms/Header'
-import Footer from '../organisms/Footer'
 import '../../styles/Cart.css'
 import CartList from '../organisms/CartList'
 import CartSummary from '../organisms/CartSummary'
@@ -24,7 +22,10 @@ export default function Cart(props) {
           checkedItems = {checkedItems} 
           setCheckedItems = {setCheckedItems}
           />
-        <CartSummary cartProducts = {cartProducts}/>
+        <CartSummary 
+          cartProducts = {cartProducts}
+          checkedItems = {checkedItems}
+        />
       </main>
   )
 }

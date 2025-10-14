@@ -21,7 +21,6 @@ export default function Header(props) {
 
   const productQuantity = cartProducts.length;
 
-
   return (
     <header>
       <div id="header-top">
@@ -46,7 +45,7 @@ export default function Header(props) {
             text={btn.text}
             url={btn.url}
             className={clsx("header-button", {
-            "selected-button-header": location.pathname === btn.url
+              "selected-button-header": location.pathname === btn.url
             })}
           />
         ))}

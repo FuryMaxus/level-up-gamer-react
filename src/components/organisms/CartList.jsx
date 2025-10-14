@@ -7,7 +7,7 @@ export default function CartList(props) {
  
   
 
-  const handleChange = (item) => {
+  const handleChangeOnCheck = (item) => {
     setCheckedItems((prev) => ({
       ...prev,
       [item]: !prev[item]
@@ -55,21 +55,25 @@ const handleDelete = (id) => {
       </div>
       <hr/>
       {cartProducts.map(p => (
-          <div className="cart-product" id={p.id} >
+          <div className="cart-product" key={p.id} >
             <div>
               <input 
                 type="checkbox" 
-                name="cart-product-selected" 
                 checked={!!checkedItems[p.id]} 
-                onChange={() => handleChange(p.id)}
+                onChange={() => handleChangeOnCheck(p.id)}
               />
             </div>
-            <img src={p.imgUrl} alt=""/>
+            <img 
+              src={p.imgUrl} 
+              alt={p.name}
+            />
             <div>
               <h3>{p.name}</h3>
               <p>{p.brand}</p>
             </div>
-            <div>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(p.price)}</div>
+            <div> 
+              {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(p.price)}
+            </div>
             <Button text="Eliminar" onClick={() => handleDelete(p.id)} />
         </div>
         ))}
