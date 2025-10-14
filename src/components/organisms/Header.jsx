@@ -2,7 +2,7 @@ import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Button from '../atoms/Button';
 import Icon from '../atoms/Icon';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
 export default function Header(props) {
@@ -20,12 +20,13 @@ export default function Header(props) {
   ];
 
   const productQuantity = cartProducts.length;
-
+  const navigate = useNavigate();
+  
   return (
     <header>
       <div id="header-top">
         <div id="logo-container">
-          <img src="images/Level-Up.png" alt="logo level-up gamer" id="logo"/>
+          <img src="images/Level-Up.png" alt="logo level-up gamer" id="logo" onClick={() => navigate("/")}/>
         </div>
         <div id="search-bar-container">
           <form action="#">

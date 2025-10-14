@@ -15,7 +15,7 @@ export default function Cart(props) {
   
 
   return (
-      <main>
+      <main id='cart-main'>
         <CartList 
           cartProducts = {cartProducts} 
           setCartProducts={setCartProducts} 
