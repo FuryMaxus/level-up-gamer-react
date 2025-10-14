@@ -17,12 +17,16 @@ export default function Home() {
   const handleClickNext = () => {
     if(currentImg < imgOptions.length){
       setCurrentImg(currentImg + 1);
+    }else{
+      setCurrentImg(1)
     }
   }
 
   const handleClickPrev = () => {
     if(currentImg > 1){
       setCurrentImg(currentImg - 1);
+    }else{
+      setCurrentImg(imgOptions.length)
     }
   }
 
