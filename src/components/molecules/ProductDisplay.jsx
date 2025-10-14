@@ -3,7 +3,7 @@ import Button from '../atoms/Button';
 
 export default function ProductDisplay(props) {
 
-  const {product} = props
+  const {product,handleAddToCart} = props;
   
   return (
     <div className="product">
@@ -14,10 +14,14 @@ export default function ProductDisplay(props) {
           <p>{correctConditionText(product.condition)}</p>
           <p>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.price)}</p>
       </div>
-      <Button text='Añadir al carro'/>
+      <Button text='Añadir al carro' onClick={()=>handleAddToCart(product)} />
     </div>
   )
 }
+
+
+
+
 
 function correctConditionText(t){
   if(t == 'new'){

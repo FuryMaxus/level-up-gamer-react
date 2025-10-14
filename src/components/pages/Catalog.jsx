@@ -1,7 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import '../../styles/Catalog.css'
-import Header from '../organisms/Header'
-import Footer from '../organisms/Footer'
 import CatalogLateralMenu from '../organisms/CatalogLateralMenu'
 import ProductGrid from '../organisms/ProductGrid'
 import CatalogCategorySelector from '../organisms/CatalogCategorySelector'
@@ -10,11 +8,13 @@ import PaginationNav from '../molecules/PaginationNav'
 import { Products } from '../../data/Products'
 
 
-export default function Catalog() {
+export default function Catalog(props) {
+
+  const {cartProducts,setCartProducts} = props;
 
   const [category, setCategory] = useState(Categories.PC_GAMERS);
   const [brand, setBrand] = useState("all");
-  const [condition, setCondition] = useState("all");
+  const [productCondition, setProductCondition] = useState("all");
   const productsFilterByCategory = Products.filter((p) => p.category === category);
   
   const brandSet = new Set(productsFilterByCategory.map((p) => p.brand));
@@ -42,7 +42,7 @@ export default function Catalog() {
   const productsFinal = productsFilterByCategory
     .filter((p) => 
       (brand === "all" || p.brand === brand) && 
-      (condition === "all" || p.condition === condition) &&
+      (productCondition === "all" || p.condition === productCondition) &&
       (p.price <= selectedPrice))
     .slice()
     .sort( (a,b) =>{
@@ -51,26 +51,36 @@ export default function Catalog() {
       return 0;
     });
 
+  const handleAddToCart = (product) => {
+    const updatedProducts = [...cartProducts, product];
+
+    setCartProducts(updatedProducts);
+
+    localStorage.setItem("cartProducts", JSON.stringify(updatedProducts));
+  };
+
 
   return (
-    <>
-      <Header/>
       <main id='catalog-main'>
         <CatalogLateralMenu
           category={category}
           setCategory={setCategory}
           brand={brand}
           setBrand={setBrand}
-          condition={condition}
-          setCondition={setCondition}
+          productCondition={productCondition}
+          setProductCondition={setProductCondition}
           brandSet = {brandSet}
           products = {productsFinal}
           setSelectedPrice = {setSelectedPrice}
           selectedPrice = {selectedPrice}
           maxPrice = {maxPrice}
         />
-        <section id="main-catalog-container">
-          <CatalogCategorySelector category={category} setCategory={setCategory} setBrand={setBrand}/>
+        <div id="main-catalog-container">
+          <CatalogCategorySelector 
+            category={category} 
+            setCategory={setCategory} 
+            setBrand={setBrand}
+          />
           <div id="top-menu" className="vertical-catalog-menu-container">
             <select value={sortOption} onChange={e => setSortOption(e.target.value)}> 
               <option value="recommended">Recomendado</option>
@@ -80,14 +90,15 @@ export default function Catalog() {
             <PaginationNav />
           </div>
           <div id="product-grid">
-            <ProductGrid products={productsFinal}/>
+            <ProductGrid 
+              products={productsFinal}
+              handleAddToCart = {handleAddToCart}
+            />
           </div>
           <div id="bottom-menu" className="vertical-catalog-menu-container">
             <PaginationNav />
           </div>
-        </section>
+        </div>
       </main>
-      <Footer/>
-    </>
   )
 }

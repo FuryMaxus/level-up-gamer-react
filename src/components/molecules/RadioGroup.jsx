@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function RadioGroup(props) {
   
-  const {id, title, name, options, selected, onChange} = props
+  const {id, title, name, options, selected, onChange} = props;
 
   return (
     <div id={id} className="radio-container">

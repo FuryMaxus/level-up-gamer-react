@@ -1,5 +1,6 @@
 import React from 'react'
 import Icon from '../atoms/Icon'
+import Button from '../atoms/Button'
 
 export default function Footer() {
   return (
@@ -19,7 +20,7 @@ export default function Footer() {
           <form action="#" to='/'>
             <label htmlFor="subscription-input"><h3>Mantente Informado</h3></label>
             <input name="subscription-input" type="text" placeholder="Ingresa tu correo!"/>
-            <button>Suscribete</button>
+            <Button text = "Subscribete" />
           </form>
           <div id="interest-sites-container">
             <h2>Sitios de Interes</h2>

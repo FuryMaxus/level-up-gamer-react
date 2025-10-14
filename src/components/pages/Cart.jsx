@@ -1,12 +1,31 @@
-import React from 'react'
-import Header from '../organisms/Header'
-import Footer from '../organisms/Footer'
+import React, { useState } from 'react'
+import '../../styles/Cart.css'
+import CartList from '../organisms/CartList'
+import CartSummary from '../organisms/CartSummary'
+export default function Cart(props) {
 
-export default function Cart() {
+  const {cartProducts, setCartProducts} = props;
+
+  const initialChecked = {};
+  cartProducts.forEach(p => {
+    initialChecked[p.id] = true;
+  });
+
+  const [checkedItems, setCheckedItems] = useState(initialChecked);
+  
+
   return (
-    <>
-      <Header/>
-      <Footer/>
-    </>
+      <main>
+        <CartList 
+          cartProducts = {cartProducts} 
+          setCartProducts={setCartProducts} 
+          checkedItems = {checkedItems} 
+          setCheckedItems = {setCheckedItems}
+          />
+        <CartSummary 
+          cartProducts = {cartProducts}
+          checkedItems = {checkedItems}
+        />
+      </main>
   )
 }
