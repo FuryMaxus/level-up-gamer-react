@@ -15,7 +15,7 @@ export default function CartSummary(props) {
 
   const finalPrice = totalPrice - discounts;
   return (
-    <section id="cart-total-payment-container">
+    <section id="cart-total-payment-container" className='cart-section'>
       <h1>Resumen de Compra</h1>
       <div>
         <p>Productos({productQuantity})</p>

@@ -39,7 +39,7 @@ const handleDelete = (id) => {
 };
 
   return (
-    <section id="cart-products-container">
+    <section id="cart-products-container" className='cart-section'>
       <h1>Carro</h1>
       <div id="checkbox-select-all-container">
         <input 
