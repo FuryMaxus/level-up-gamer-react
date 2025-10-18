@@ -15,9 +15,9 @@ export default function ProductDisplay(props) {
     navigate(`/catalogo/detalle/${product.id}`);
   }
 
-  const handleButtonCLick = (e) => {
-    e.stopPropagarion()
-    addToCart(product)
+  const handleButtonClick = (e) => {
+    e.stopPropagation();
+    addToCart(product);
   }
 
 
@@ -30,7 +30,7 @@ export default function ProductDisplay(props) {
           <p>{correctConditionText(product.condition)}</p>
           <p>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.price)}</p>
       </div>
-      <Button text='Añadir al carro' onClick={handleButtonCLick} />
+      <Button text='Añadir al carro' onClick={handleButtonClick} />
     </div>
   )
 }
