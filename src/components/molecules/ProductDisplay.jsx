@@ -1,14 +1,28 @@
 import React from 'react'
 import Button from '../atoms/Button';
 import { useCart } from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function ProductDisplay(props) {
 
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const {product} = props;
   
+
+  const handleDivClick = () => {
+    navigate(`/catalogo/detalle/${product.id}`);
+  }
+
+  const handleButtonCLick = (e) => {
+    e.stopPropagarion()
+    addToCart(product)
+  }
+
+
   return (
-    <div className="product">
+    <div className="product" onClick={handleDivClick}> 
       <img src={product.imgUrl} alt= {product.name} />
       <div className="product-info">
           <p>{product.brand}</p>
@@ -16,7 +30,7 @@ export default function ProductDisplay(props) {
           <p>{correctConditionText(product.condition)}</p>
           <p>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.price)}</p>
       </div>
-      <Button text='Añadir al carro' onClick={()=>addToCart(product)} />
+      <Button text='Añadir al carro' onClick={handleButtonCLick} />
     </div>
   )
 }
