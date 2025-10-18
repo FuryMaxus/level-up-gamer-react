@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import Button from '../atoms/Button';
+import { useCart } from '../../context/CartContext';
 
 export default function CartList(props) {
   
-  const {checkedItems,setCheckedItems,cartProducts, setCartProducts} = props;
- 
+  const {checkedItems,setCheckedItems} = props;
   
+  const {removeFromCart, cartProducts } = useCart();
 
   const handleChangeOnCheck = (item) => {
     setCheckedItems((prev) => ({
@@ -26,11 +27,8 @@ export default function CartList(props) {
   }
 };
 
-const handleDelete = (id) => {
-
-  const updatedCartProducts = cartProducts.filter((p) => p.id !== id);
-  localStorage.setItem("cartProducts", JSON.stringify(updatedCartProducts));
-  setCartProducts(updatedCartProducts);
+const handleDeleteWithChecks = (id) => {
+  removeFromCart(id);
   setCheckedItems((prev) => {
     const copy = { ...prev };
     delete copy[id];
@@ -74,7 +72,7 @@ const handleDelete = (id) => {
             <div> 
               {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(p.price)}
             </div>
-            <Button text="Eliminar" onClick={() => handleDelete(p.id)} />
+            <Button text="Eliminar" onClick={() => handleDeleteWithChecks(p.id)} />
         </div>
         ))}
     </section>

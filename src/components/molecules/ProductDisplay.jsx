@@ -1,9 +1,11 @@
 import React from 'react'
 import Button from '../atoms/Button';
+import { useCart } from '../../context/CartContext';
 
 export default function ProductDisplay(props) {
 
-  const {product,handleAddToCart} = props;
+  const { addToCart } = useCart();
+  const {product} = props;
   
   return (
     <div className="product">
@@ -14,14 +16,10 @@ export default function ProductDisplay(props) {
           <p>{correctConditionText(product.condition)}</p>
           <p>{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(product.price)}</p>
       </div>
-      <Button text='Añadir al carro' onClick={()=>handleAddToCart(product)} />
+      <Button text='Añadir al carro' onClick={()=>addToCart(product)} />
     </div>
   )
 }
-
-
-
-
 
 function correctConditionText(t){
   if(t == 'new'){

@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import '../../styles/Cart.css'
 import CartList from '../organisms/CartList'
 import CartSummary from '../organisms/CartSummary'
-export default function Cart(props) {
+import { useCart } from '../../context/CartContext';
 
-  const {cartProducts, setCartProducts} = props;
+export default function Cart() {
+
+  const { cartProducts } = useCart();
 
   const initialChecked = {};
   cartProducts.forEach(p => {
@@ -17,13 +19,10 @@ export default function Cart(props) {
   return (
       <main id='cart-main'>
         <CartList 
-          cartProducts = {cartProducts} 
-          setCartProducts={setCartProducts} 
           checkedItems = {checkedItems} 
           setCheckedItems = {setCheckedItems}
           />
         <CartSummary 
-          cartProducts = {cartProducts}
           checkedItems = {checkedItems}
         />
       </main>
