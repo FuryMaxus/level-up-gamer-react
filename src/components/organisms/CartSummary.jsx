@@ -1,9 +1,13 @@
 import React from 'react'
 import Button from '../atoms/Button';
+import { useCart } from '../../context/CartContext';
 
 export default function CartSummary(props) {
-  const {cartProducts,checkedItems} = props;
+
+  const {checkedItems} = props;
+  const { cartProducts } = useCart();
   const productQuantity = cartProducts.length;
+  
 
   const totalPrice = cartProducts
     .filter((p) => checkedItems[p.id])

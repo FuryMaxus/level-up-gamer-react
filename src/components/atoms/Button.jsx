@@ -6,11 +6,11 @@ export default function Button(props) {
   const {text = "", url,img=false, imgPath, onClick, ...extraProps} = props
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     if(onClick) {
-      onClick();
+      onClick(e);
     } else if(url){
-        navigate(url);
+      navigate(url);
     }
   }
 

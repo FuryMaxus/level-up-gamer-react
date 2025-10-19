@@ -4,10 +4,11 @@ import Button from '../atoms/Button';
 import Icon from '../atoms/Icon';
 import { useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
+import { useCart } from '../../context/CartContext';
 
-export default function Header(props) {
+export default function Header() {
 
-  const {cartProducts} = props;
+  const { cartProducts } = useCart();
 
   const location = useLocation();
 

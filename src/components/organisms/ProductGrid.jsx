@@ -3,7 +3,7 @@ import ProductDisplay from '../molecules/ProductDisplay.jsx';
 
 export default function ProductGrid(props) {
 
-  const {products,handleAddToCart} = props;
+  const {products} = props;
 
   return (
     <>
@@ -12,7 +12,6 @@ export default function ProductGrid(props) {
         <ProductDisplay 
           key={p.id} 
           product={p} 
-          handleAddToCart = {handleAddToCart} 
         />
       )
     )}
