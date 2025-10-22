@@ -2,6 +2,7 @@ import React from 'react'
 import '../../styles/Form.css'
 import { useRef } from 'react'
 import { useState } from 'react'
+import Button from '../atoms/Button'
 
 
 function SignOn() {
@@ -71,10 +72,9 @@ function SignOn() {
 
         <p id="errores">{error}</p>
   
-        <button type="sumbit">Registrarse</button>
-        <button type="reset">Limpiar</button>
-
-        <p>¿Ya tienes una cuenta? <a href="#">Inicia Sesión</a></p>
+         <Button text = "Registrarse" url='/'></Button>
+        
+        <p>¿Ya tienes una cuenta? <a href='/inicio-sesion'>Inicia Sesión</a></p>
     </form>
   )
 }

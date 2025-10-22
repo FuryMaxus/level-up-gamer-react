@@ -2,6 +2,7 @@ import React from 'react'
 import '../../styles/Form.css'
 import { useRef } from 'react'
 import { useState } from 'react'
+import Button from '../atoms/Button';
 
 
 function Login() {
@@ -46,10 +47,9 @@ function Login() {
         </div>
 
         <p id="errores">{error}</p>
-        <button type="sumbit">Iniciar Sesión</button>
-        <button type="reset">Limpiar</button>
-
-        <p>¿Aún no tienes una cuenta? <a href="#">Regístrate</a></p>
+        <Button text = "Iniciar Sesión" url='/'></Button>
+        
+        <p>¿Aún no tienes una cuenta? <a href='/registrarse'>Regístrate</a></p>
     </form>
   )
 }
