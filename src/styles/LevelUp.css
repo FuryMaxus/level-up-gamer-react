@@ -21,7 +21,6 @@
     border: 2px solid #39FF14;
     border-radius: 10px;
     padding: 1em;
-
 }
 
 #level-up-meter {
@@ -117,4 +116,45 @@
 #event-map-container > img{
     width: 300px;
     border: 2px solid #1E90FF;
+}
+
+@media (max-width: 768px) {
+
+    #level-up-main {
+        padding: 0 20px;
+    }
+
+    #level-up-meter-container {
+        margin-left: 35px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+    #level-up-meter-container {
+        h3,p {
+            margin-right: 39px;
+        }
+    }
+
+    #level-up-meter {
+        width: 50vw ;
+    }
+
+    #spend-points-container > div {
+        flex-direction: column;
+    }
+
+    #level-up-meter-level-number > h3 {
+        margin: 0;
+    }
+
+    #info-level-up-system-container,#event-map-container {
+        width: 75%;
+        text-align: center;
+    }
+
+    #event-map-container > img{
+        width: 75%;
+    }
+    
 }

@@ -53,27 +53,31 @@ const handleDeleteWithChecks = (id) => {
       </div>
       <hr/>
       {cartProducts.map(p => (
-          <div className="cart-product" key={p.id} >
-            <div>
-              <input 
-                type="checkbox" 
-                checked={!!checkedItems[p.id]} 
-                onChange={() => handleChangeOnCheck(p.id)}
+          <>
+            <div className="cart-product" key={p.id} >
+              <div>
+                <input 
+                  type="checkbox" 
+                  checked={!!checkedItems[p.id]} 
+                  onChange={() => handleChangeOnCheck(p.id)}
+                />
+              </div>
+              <img 
+                src={p.imgUrl} 
+                alt={p.name}
               />
+              <div>
+                <h3>{p.name}</h3>
+                <p>{p.brand}</p>
+              </div>
+              <div> 
+                {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(p.price)}
+              </div>
+              <Button text="Eliminar" onClick={() => handleDeleteWithChecks(p.id)} />
             </div>
-            <img 
-              src={p.imgUrl} 
-              alt={p.name}
-            />
-            <div>
-              <h3>{p.name}</h3>
-              <p>{p.brand}</p>
-            </div>
-            <div> 
-              {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(p.price)}
-            </div>
-            <Button text="Eliminar" onClick={() => handleDeleteWithChecks(p.id)} />
-        </div>
+            <hr />
+          </>
+          
         ))}
     </section>
   )

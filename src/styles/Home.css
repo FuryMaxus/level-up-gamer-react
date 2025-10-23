@@ -1,6 +1,7 @@
 #home-main {
     height: auto;
     width: auto;
+    margin-top: 20px;
 }
 
 #home-main > section {
@@ -47,6 +48,6 @@
 @media (max-width: 768px) {
 
     #image-carrusel {
-        width: 350px;
+        width: 75%;
     }
 }

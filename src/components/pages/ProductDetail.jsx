@@ -25,11 +25,11 @@ export default function ProductDetail() {
           <h3>{product.brand}</h3>
           <h1>{product.name}</h1>
           <div id="star-raiting">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
+            <i className="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star"></i>
+            <i className="fa-regular fa-star"></i>
           </div>
         </div>
         <div id="especifics-details-container">
@@ -67,11 +67,11 @@ export default function ProductDetail() {
             
               <div id="share-product-container">
                 <h3>Compartir</h3>
-                <div class="contact-links-container" id="share-links-container">
-                  <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                  <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                  <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                <div className="contact-links-container" id="share-links-container">
+                  <a href="#"><i className="fa-brands fa-facebook"></i></a>
+                  <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
+                  <a href="#"><i className="fa-brands fa-instagram"></i></a>
+                  <a href="#"><i className="fa-brands fa-tiktok"></i></a>
                 </div>
               </div>
             </div>
@@ -86,11 +86,11 @@ export default function ProductDetail() {
               <h2>4.0</h2>
               <div>
                   <div id="star-raiting">
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-regular fa-star"></i>
+                      <i className="fa-solid fa-star"></i>
+                      <i className="fa-solid fa-star"></i>
+                      <i className="fa-solid fa-star"></i>
+                      <i className="fa-solid fa-star"></i>
+                      <i className="fa-regular fa-star"></i>
                   </div>
                   <p>57 Reseñas</p>
               </div> 
@@ -98,39 +98,39 @@ export default function ProductDetail() {
             <article id="calification-graph">
               <h3>Calificaciones</h3>
               <div>
-                <button><i class="fa-solid fa-star"></i>5</button>
-                <div class="calification-graph-bar">
+                <button><i className="fa-solid fa-star"></i>5</button>
+                <div className="calification-graph-bar">
                     <div id="five-star-bar-content"></div>
                 </div>
-                <span class="calification-graph-bar-value">23</span>
+                <span className="calification-graph-bar-value">23</span>
               </div>
               <div>
-                <button><i class="fa-solid fa-star"></i>4</button>
-                <div class="calification-graph-bar">
+                <button><i className="fa-solid fa-star"></i>4</button>
+                <div className="calification-graph-bar">
                     <div id="four-star-bar-content"></div>
                 </div>
-                <span class="calification-graph-bar-value">20</span>
+                <span className="calification-graph-bar-value">20</span>
               </div>
               <div>
-                <button><i class="fa-solid fa-star"></i>3</button>
-                <div class="calification-graph-bar">
+                <button><i className="fa-solid fa-star"></i>3</button>
+                <div className="calification-graph-bar">
                     <div id="three-star-bar-content"></div>
                 </div>
-                <span class="calification-graph-bar-value">7</span>
+                <span className="calification-graph-bar-value">7</span>
               </div>
               <div>
-                <button><i class="fa-solid fa-star"></i>2</button>
-                <div class="calification-graph-bar">
+                <button><i className="fa-solid fa-star"></i>2</button>
+                <div className="calification-graph-bar">
                     <div id="two-star-bar-content"></div>
                 </div>
-                <span class="calification-graph-bar-value">5</span>
+                <span className="calification-graph-bar-value">5</span>
               </div>
               <div>
-                <button><i class="fa-solid fa-star"></i>1</button>
-                <div class="calification-graph-bar">
+                <button><i className="fa-solid fa-star"></i>1</button>
+                <div className="calification-graph-bar">
                     <div id="one-star-bar-content"></div>
                 </div>
-                <span class="calification-graph-bar-value">2</span>
+                <span className="calification-graph-bar-value">2</span>
               </div>
             </article>
           </div>
@@ -138,23 +138,23 @@ export default function ProductDetail() {
             <div id="review-filterer-container">
               <h3>Filtrar reseñas por: </h3>
               <div>
-                <button><i class="fa-solid fa-star"></i>5</button>
-                <button><i class="fa-solid fa-star"></i>4</button>
-                <button><i class="fa-solid fa-star"></i>3</button>
-                <button><i class="fa-solid fa-star"></i>2</button>
-                <button><i class="fa-solid fa-star"></i>1</button>
+                <button><i className="fa-solid fa-star"></i>5</button>
+                <button><i className="fa-solid fa-star"></i>4</button>
+                <button><i className="fa-solid fa-star"></i>3</button>
+                <button><i className="fa-solid fa-star"></i>2</button>
+                <button><i className="fa-solid fa-star"></i>1</button>
               </div>
               <p>3 de 30 reseñas</p>
             </div>
-            <div class="user-review-container">
+            <div className="user-review-container">
                 <h4>Carlos</h4>
                 <div>
-                    <div class="user-review-star-ranking">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+                    <div className="user-review-star-ranking">
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
                     </div>
                     <p>12/08/2025</p>
                 </div>
@@ -166,15 +166,15 @@ export default function ProductDetail() {
             </div>
             <button>Denunciar</button>
             <hr/>
-            <div class="user-review-container">
+            <div className="user-review-container">
                 <h4>Fernanda</h4>
                 <div>
-                    <div class="user-review-star-ranking">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+                    <div className="user-review-star-ranking">
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-regular fa-star"></i>
                     </div>
                     <p>24/08/2025</p>
                 </div>
@@ -186,15 +186,15 @@ export default function ProductDetail() {
             </div>
             <button>Denunciar</button>
             <hr/>
-            <div class="user-review-container">
+            <div className="user-review-container">
                 <h4></h4>
                 <div>
-                    <div class="user-review-star-ranking">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+                    <div className="user-review-star-ranking">
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
+                        <i className="fa-regular fa-star"></i>
                     </div>
                     <p>01/09/2025</p>
                 </div>
@@ -206,7 +206,7 @@ export default function ProductDetail() {
             </div>
             <button>Denunciar</button>
             <hr/>
-            <button id="button-show-more-reviews">Mostrar todas las reseñas <i class="fa-solid fa-arrow-down"></i></button>
+            <button id="button-show-more-reviews">Mostrar todas las reseñas <i className="fa-solid fa-arrow-down"></i></button>
           </div>
         </div>
       </section>
