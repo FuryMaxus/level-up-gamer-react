@@ -61,7 +61,13 @@ function Login() {
 
           setError('');
 
+
+          setEmail('');
+          setPassword('');
+          setIsSubmitted(false);
         }
+
+        
 
         const emailHasError = validateEmail(email) !== '';
         const passwordHasError = validatePassword(password) !== '';
