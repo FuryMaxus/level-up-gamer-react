@@ -42,3 +42,11 @@
 #next-carrusel { 
     right: 10px;
  }
+
+
+@media (max-width: 768px) {
+
+    #image-carrusel {
+        width: 350px;
+    }
+}

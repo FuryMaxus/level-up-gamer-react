@@ -1,0 +1,178 @@
+header {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    min-height: 100px;
+    gap: 1em;
+}
+
+#header-top {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 99vw;
+    height: auto;
+    min-height: 50px;
+    border-bottom: 1px solid #39FF14;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+
+#logo-container {
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+#logo-container > img {
+    width: 5em;
+    cursor: pointer;
+}
+
+#search-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+}
+
+#search-bar-container > form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-bar-container > form > input {
+    width: 30vw;
+    font-size: 1.25em;
+    padding: 0.5em;
+    background-color: #39FF14;
+    border: 2px solid #1E90FF;
+    border-radius: 20px;
+    
+}
+
+#session-buttons-container {
+    width: 20vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5em;
+}
+
+#session-buttons-container > a {
+    text-decoration: none;
+}
+
+.icono-header {
+    color: #39FF14;
+    font-size: 40px;
+
+}
+
+.cart-icon {
+    position: relative;
+}
+
+.cart-icon > span {
+    background-color: #1E90FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    position: absolute;
+    top: -10px;
+    right: -5px;
+}
+
+
+#logo {
+    cursor: pointer;
+}
+
+#header-bottom{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+}
+
+.header-button  {
+    font-size: 20px;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 210px;
+}
+
+
+.selected-button-header {
+    background-color: #1E90FF;
+}
+
+#hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+@media (max-width: 768px) {
+  #header-bottom {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #333;
+  }
+
+  #header-bottom.open {
+    display: flex;
+    padding: 1em;
+    background-color: #1E90FF;
+    border: 2px solid #39FF14;
+  }
+
+  #hamburger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #hamburger > i {
+    font-size: 4rem;
+
+    color: #1E90FF;
+  }
+
+  #header-top {
+    flex-wrap: wrap;
+  }
+
+  #header-top {
+    flex-direction: column;
+    align-items: center;
+   } 
+
+   #session-buttons-container{
+    width: auto;
+    justify-content: center;
+    margin-top: 2vh;
+   }
+
+
+}
