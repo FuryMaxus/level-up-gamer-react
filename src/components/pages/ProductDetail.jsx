@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useCart } from '../../context/CartContext';
 import { Products } from '../../data/Products';
 import Button from '../atoms/Button';
+import ProductReview from '../molecules/ProductReview';
 export default function ProductDetail() {
 
   const {id} = useParams();
@@ -12,6 +13,31 @@ export default function ProductDetail() {
 
   if (!product) return <p>Producto no encontrado</p>;
   
+
+  const reviews = [
+    {
+      name: "Carlos",
+      date: "12/08/2025",
+      stars: 5,
+      title: "Velocidad y fluidez desde el primer día",
+      body: "Equipo muy rápido y silencioso, arranca en segundos gracias al SSD. Lo uso para trabajo y gaming ligero y no me ha dado ningún problema."
+    },
+    {
+      name: "Fernanda",
+      date: "24/08/2025",
+      stars: 4,
+      title: "Gran relación calidad-precio",
+      body: "Excelente relación precio/rendimiento. La RAM de 16GB es más que suficiente para multitarea y los gráficos Vega sorprenden en juegos casuales."
+    },
+    {
+      name: "Anónimo",
+      date: "01/09/2025",
+      stars: 4,
+      title: "Diseño moderno y buena ventilación",
+      body: "Me encanta el diseño del gabinete y la ventilación. Se nota la diferencia al editar video, todo corre fluido y sin calentarse demasiado."
+    }
+  ];
+
   return (
     <main id='product-detail-main'>
       <section>
@@ -85,14 +111,14 @@ export default function ProductDetail() {
             <div id="review-puntation"> 
               <h2>4.0</h2>
               <div>
-                  <div id="star-raiting">
-                      <i className="fa-solid fa-star"></i>
-                      <i className="fa-solid fa-star"></i>
-                      <i className="fa-solid fa-star"></i>
-                      <i className="fa-solid fa-star"></i>
-                      <i className="fa-regular fa-star"></i>
-                  </div>
-                  <p>57 Reseñas</p>
+                <div id="star-raiting">
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-regular fa-star"></i>
+                </div>
+                <p>57 Reseñas</p>
               </div> 
             </div>
             <article id="calification-graph">
@@ -146,66 +172,11 @@ export default function ProductDetail() {
               </div>
               <p>3 de 30 reseñas</p>
             </div>
-            <div className="user-review-container">
-                <h4>Carlos</h4>
-                <div>
-                    <div className="user-review-star-ranking">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                    </div>
-                    <p>12/08/2025</p>
-                </div>
-                <h3>Velocidad y fluidez desde el primer día</h3>
-                <p>
-                    Equipo muy rápido y silencioso, arranca en segundos gracias al SSD.
-                    Lo uso para trabajo y gaming ligero y no me ha dado ningún problema.
-                </p>
-            </div>
-            <button>Denunciar</button>
-            <hr/>
-            <div className="user-review-container">
-                <h4>Fernanda</h4>
-                <div>
-                    <div className="user-review-star-ranking">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-regular fa-star"></i>
-                    </div>
-                    <p>24/08/2025</p>
-                </div>
-                <h3>Gran relación calidad-precio</h3>
-                <p>
-                    Excelente relación precio/rendimiento. La RAM de 16GB es más que suficiente para multitarea
-                    y los gráficos Vega sorprenden en juegos casuales.
-                </p>
-            </div>
-            <button>Denunciar</button>
-            <hr/>
-            <div className="user-review-container">
-                <h4></h4>
-                <div>
-                    <div className="user-review-star-ranking">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-regular fa-star"></i>
-                    </div>
-                    <p>01/09/2025</p>
-                </div>
-                <h3>Diseño moderno y buena ventilación</h3>
-                <p>
-                    Me encanta el diseño del gabinete y la ventilación. Se nota la diferencia al editar video,
-                    todo corre fluido y sin calentarse demasiado.
-                </p>
-            </div>
-            <button>Denunciar</button>
-            <hr/>
+
+            {reviews.map((review, index) => (
+              <ProductReview key={index} {...review} />
+            ))}
+
             <button id="button-show-more-reviews">Mostrar todas las reseñas <i className="fa-solid fa-arrow-down"></i></button>
           </div>
         </div>

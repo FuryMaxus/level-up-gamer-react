@@ -349,3 +349,44 @@
 }
 
 
+@media (max-width: 1357px) {
+    #product-detail-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+  
+        margin: 0;
+        padding: 0;
+    }
+
+    #especifics-details-container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        *{
+            align-self: center;
+        }
+    }
+
+    #reviews-container-content{
+        flex-direction: column;
+        height: auto; 
+        font-size: 10px;
+        align-items: center;
+       
+    }
+
+    #reviews-container-left{
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        height: auto;
+    }
+
+    #reviews-container-right{
+        width: 75%;
+    }
+
+   
+}

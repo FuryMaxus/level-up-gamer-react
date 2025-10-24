@@ -13,6 +13,8 @@ export default function Catalog() {
   const [category, setCategory] = useState(Categories.PC_GAMERS);
   const [brand, setBrand] = useState("all");
   const [productCondition, setProductCondition] = useState("all");
+
+  
   const productsFilterByCategory = Products.filter((p) => p.category === category);
   
   const brandSet = new Set(productsFilterByCategory.map((p) => p.brand));
