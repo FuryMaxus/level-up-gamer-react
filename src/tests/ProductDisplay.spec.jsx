@@ -5,9 +5,11 @@ import ProductDisplay from "../components/molecules/ProductDisplay";
 import { Categories } from "../data/Categories";
 
 
+const mockAddToCart = jest.fn();
+
 jest.mock("../context/CartContext", () => ({
   useCart: () => ({
-    addToCart: jest.fn(),
+    addToCart: mockAddToCart,
   }),
 }));
 
@@ -23,11 +25,15 @@ const mockProduct = {
 
 describe("ProductDisplay", () => {
 
-  it("muestra los datos del producto correctamente", () => {
+  beforeEach(() => {
+    mockAddToCart.mockClear(); 
+  });
 
+  it("muestra los datos del producto correctamente", () => {
+    
     render(
       <MemoryRouter>
-        <ProductDisplay product={product} />
+        <ProductDisplay product={mockProduct} />
       </MemoryRouter>
     );
 
@@ -38,19 +44,15 @@ describe("ProductDisplay", () => {
 
   it("botón 'Añadir al carro' llama a addToCart", () => {
 
-    const { useCart } = require("../context/CartContext");
-    const addToCartMock = jest.fn();
-    useCart.mockReturnValue({ addToCart: addToCartMock });
-
     render(
       <MemoryRouter>
-        <ProductDisplay product={product} />
+        <ProductDisplay product={mockProduct} />
       </MemoryRouter>
     );
 
     fireEvent.click(screen.getByText("Añadir al carro"));
 
-    expect(addToCartMock).toHaveBeenCalledWith(mockProduct);
+    expect(mockAddToCart).toHaveBeenCalledWith(mockProduct);
   });
 
 });

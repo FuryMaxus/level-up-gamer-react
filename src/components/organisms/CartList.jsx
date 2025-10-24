@@ -53,8 +53,8 @@ const handleDeleteWithChecks = (id) => {
       </div>
       <hr/>
       {cartProducts.map(p => (
-          <>
-            <div className="cart-product" key={p.id} >
+          <React.Fragment key={p.id}>
+            <div className="cart-product">
               <div>
                 <input 
                   type="checkbox" 
@@ -75,8 +75,8 @@ const handleDeleteWithChecks = (id) => {
               </div>
               <Button text="Eliminar" onClick={() => handleDeleteWithChecks(p.id)} />
             </div>
-            <hr />
-          </>
+            <hr/>
+          </React.Fragment>
           
         ))}
     </section>
