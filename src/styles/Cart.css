@@ -85,3 +85,21 @@ hr{
     display: flex;
     justify-content: center;
 }
+
+@media (max-width: 768px) {
+    #cart-main {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .cart-product{
+        flex-direction: column;
+    }
+
+    #cart-total-payment-container{
+        width: auto;
+        align-self: auto;
+    }
+}

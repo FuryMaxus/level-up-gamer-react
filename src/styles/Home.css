@@ -1,6 +1,7 @@
 #home-main {
     height: auto;
     width: auto;
+    margin-top: 20px;
 }
 
 #home-main > section {
@@ -42,3 +43,11 @@
 #next-carrusel { 
     right: 10px;
  }
+
+
+@media (max-width: 768px) {
+
+    #image-carrusel {
+        width: 75%;
+    }
+}

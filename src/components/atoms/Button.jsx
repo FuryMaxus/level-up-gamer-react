@@ -20,7 +20,7 @@ export default function Button(props) {
       {...extraProps}
     >
       {img ? <img src={imgPath} alt={text}></img> : null }
-     
+      
       {text}
 
     </button>

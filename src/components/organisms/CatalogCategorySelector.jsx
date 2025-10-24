@@ -27,19 +27,22 @@ export default function CatalogCategorySelector(props) {
 
 
   return (
-    <div id="category-selector-container">
-      {categoryButtonsData.map((c) => (
-        <Button
-          key={c.value}
-          onClick={() => handleCategoryClick(c.value)}
-          text={c.label}
-          className={clsx(
-            "btn-category", {"current-category": category === c.value}
-          )}
-          img
-          imgPath={c.img}
-        />
-      ))}
-    </div>
+      <div id='category-scrollable'>
+        <div id="category-selector-container">
+          {categoryButtonsData.map((c) => (
+            <Button
+              key={c.value}
+              onClick={() => handleCategoryClick(c.value)}
+              text={c.label}
+              className={clsx(
+                "btn-category", {"current-category": category === c.value}
+              )}
+              img
+              imgPath={c.img}
+            />
+          ))}
+        </div>
+      </div>
+    
   )
 }

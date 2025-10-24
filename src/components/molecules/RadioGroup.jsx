@@ -6,8 +6,11 @@ export default function RadioGroup(props) {
 
   return (
     <div id={id} className="radio-container">
-      {title && <h2>{title}</h2>}
-      {options.map((option) => (
+      <div>
+        {title && <h2>{title}</h2>}
+      </div>
+      <div className='radio-options-container'>
+        {options.map((option) => (
         <label key={option.value}>
           <input type="radio" 
             name={name} 
@@ -18,6 +21,8 @@ export default function RadioGroup(props) {
           {option.label}
         </label>
       ))}
+      </div>
+      
     </div>
 
   )

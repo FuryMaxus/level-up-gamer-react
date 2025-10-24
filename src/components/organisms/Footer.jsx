@@ -1,6 +1,7 @@
 import React from 'react'
 import Icon from '../atoms/Icon'
 import Button from '../atoms/Button'
+import '../../styles/Footer.css'
 
 export default function Footer() {
   return (
