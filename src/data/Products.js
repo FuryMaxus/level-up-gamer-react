@@ -1,5 +1,13 @@
 import { Categories } from "./Categories";
 
+
+
+
+
+
+
+
+/*
 export const Products = [
 
     { id: 1, name: "PC Gamer ASUS ROG Strix G15 / Ryzen 7 5800X / RTX 4070 / 32GB RAM / 1TB NVMe", price: 1499999, category: Categories.PC_GAMERS, imgUrl: "https://static.vecteezy.com/system/resources/previews/048/412/781/non_2x/modern-gaming-pc-isolated-on-transparent-free-png.png", brand: "ASUS", condition: "new" },
@@ -78,3 +86,4 @@ export const Products = [
   { id: 74, name: "Polerón Classic", price: 24000, category: Categories.HOODIES, imgUrl: "http://res.publicdomainfiles.com/pdf_view/83/13939128615013.png", brand: "Level-Up Gamer", condition: "new" },
   { id: 75, name: "Polerón HoodieX", price: 24000, category: Categories.HOODIES, imgUrl: "http://res.publicdomainfiles.com/pdf_view/83/13939128615013.png", brand: "Level-Up Gamer", condition: "open" }
 ];
+*/

@@ -5,6 +5,8 @@ export default function ProductGrid(props) {
 
   const {products} = props;
 
+  
+
   return (
     <>
     {products.map(p =>
