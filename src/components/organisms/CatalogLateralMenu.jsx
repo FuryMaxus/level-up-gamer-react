@@ -16,7 +16,7 @@ export default function CatalogLateralMenu(props) {
     maxPrice
   } = props
 
-    
+   
     
   return (
     <section id="lateral-menu">

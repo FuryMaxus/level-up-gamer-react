@@ -5,7 +5,6 @@ import ProductGrid from '../organisms/ProductGrid'
 import CatalogCategorySelector from '../organisms/CatalogCategorySelector'
 import { Categories } from '../../data/Categories'
 import PaginationNav from '../molecules/PaginationNav'
-import { Products } from '../../data/Products'
 import ProductService from '../../services/ProductService'
 
 
@@ -31,8 +30,8 @@ export default function Catalog() {
     });
   }
 
-  const productsFilterByCategory = products;
-  
+  const productsFilterByCategory = products.filter(p => p.category === category);
+
   const brandSet = new Set(productsFilterByCategory.map((p) => p.brand));
 
   const maxPrice = useMemo(() => {
@@ -58,16 +57,9 @@ export default function Catalog() {
   const productsFinal = productsFilterByCategory
     .filter((p) => 
       (brand === "all" || p.brand === brand) && 
-      (productCondition === "all" || p.condition === productCondition) &&
-      (p.price <= selectedPrice))
-    .slice()
-    .sort( (a,b) =>{
-      if (sortOption === "price-asc") return a.price - b.price;
-      if (sortOption === "price-desc") return b.price - a.price;
-      return 0;
-    });
-
-
+      (productCondition === "all" || p.productCondition === productCondition) &&
+      (p.price <= selectedPrice)
+  );
   return (
       <main id='catalog-main'>
         <CatalogLateralMenu

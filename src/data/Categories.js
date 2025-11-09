@@ -8,4 +8,5 @@ export const Categories = Object.freeze({
     MOUSE_PADS: "Mouse pads",
     SHIRTS: "Poleras",
     HOODIES: "Polerones"
-})
+});
+
