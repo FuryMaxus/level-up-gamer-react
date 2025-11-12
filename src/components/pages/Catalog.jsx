@@ -62,13 +62,14 @@ export default function Catalog() {
     .filter((p) => 
       (brand === "all" || p.brand === brand) && 
       (productCondition === "all" || p.productCondition === productCondition) &&
-      (p.price <= selectedPrice)
+      (p.price <= selectedPrice))
+    .slice()
     .sort( (a,b) =>{
       if (sortOption === "price-asc") return a.price - b.price;
       if (sortOption === "price-desc") return b.price - a.price;
       return 0;
-    })
-  );
+    });
+
   return (
       <main id='catalog-main'>
         <CatalogLateralMenu
