@@ -39,3 +39,18 @@ body{
 }
 
 
+a:link{
+    color: #1E90FF;
+}
+
+a:visited{
+    color: #1E90FF;
+}
+
+a:hover{
+    color: #39FF14;
+}
+
+
+
+
