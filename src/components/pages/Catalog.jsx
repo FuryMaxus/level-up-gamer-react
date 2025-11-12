@@ -18,6 +18,10 @@ export default function Catalog() {
   const [products,setProducts] = useState([]);
 
 
+
+
+
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -59,6 +63,11 @@ export default function Catalog() {
       (brand === "all" || p.brand === brand) && 
       (productCondition === "all" || p.productCondition === productCondition) &&
       (p.price <= selectedPrice)
+    .sort( (a,b) =>{
+      if (sortOption === "price-asc") return a.price - b.price;
+      if (sortOption === "price-desc") return b.price - a.price;
+      return 0;
+    })
   );
   return (
       <main id='catalog-main'>
