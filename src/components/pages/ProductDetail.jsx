@@ -2,14 +2,15 @@ import React from 'react'
 import '../../styles/ProductDetail.css'
 import { useParams } from 'react-router-dom'
 import { useCart } from '../../context/CartContext';
-import { Products } from '../../data/Products';
 import Button from '../atoms/Button';
 import ProductReview from '../molecules/ProductReview';
+import ProductService from '../../services/ProductService';
 export default function ProductDetail() {
 
   const {id} = useParams();
   const {addToCart} = useCart();
-  const product = Products.find(p => p.id === parseInt(id));
+
+  const product = ProductService.getProductById(id)
 
   if (!product) return <p>Producto no encontrado</p>;
   

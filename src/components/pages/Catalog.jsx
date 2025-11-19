@@ -5,7 +5,7 @@ import ProductGrid from '../organisms/ProductGrid'
 import CatalogCategorySelector from '../organisms/CatalogCategorySelector'
 import { Categories } from '../../data/Categories'
 import PaginationNav from '../molecules/PaginationNav'
-import { Products } from '../../data/Products'
+import ProductService from '../../services/ProductService'
 
 
 export default function Catalog() {
@@ -15,8 +15,27 @@ export default function Catalog() {
   const [productCondition, setProductCondition] = useState("all");
 
   
-  const productsFilterByCategory = Products.filter((p) => p.category === category);
-  
+  const [products,setProducts] = useState([]);
+
+
+
+
+
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = () => {
+    ProductService.getAllProducts().then(response => {
+      setProducts(response.data);
+    }).catch(error => {
+      console.log("Error fetching products",error);
+    });
+  }
+
+  const productsFilterByCategory = products.filter(p => p.category === category);
+
   const brandSet = new Set(productsFilterByCategory.map((p) => p.brand));
 
   const maxPrice = useMemo(() => {
@@ -42,7 +61,7 @@ export default function Catalog() {
   const productsFinal = productsFilterByCategory
     .filter((p) => 
       (brand === "all" || p.brand === brand) && 
-      (productCondition === "all" || p.condition === productCondition) &&
+      (productCondition === "all" || p.productCondition === productCondition) &&
       (p.price <= selectedPrice))
     .slice()
     .sort( (a,b) =>{
@@ -50,7 +69,6 @@ export default function Catalog() {
       if (sortOption === "price-desc") return b.price - a.price;
       return 0;
     });
-
 
   return (
       <main id='catalog-main'>
