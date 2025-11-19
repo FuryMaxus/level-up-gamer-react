@@ -18,10 +18,6 @@ export default function Catalog() {
   const [products,setProducts] = useState([]);
 
 
-
-
-
-
   useEffect(() => {
     fetchProducts();
   }, []);

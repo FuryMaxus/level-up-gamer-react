@@ -9,7 +9,7 @@ import '../../styles/Header.css'
 
 export default function Header() {
 
-  const { cartProducts } = useCart();
+  const { cartProducts,totalQuantity } = useCart();
 
   const location = useLocation();
 
@@ -21,7 +21,8 @@ export default function Header() {
     { text: 'Acerca de', url: '/acerca-de' },
   ];
 
-  const productQuantity = cartProducts.length;
+  const productQuantity = totalQuantity;
+  
   const navigate = useNavigate();
   
   const [menuOpen, setMenuOpen] = useState(false);
