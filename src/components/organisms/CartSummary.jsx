@@ -5,14 +5,14 @@ import { useCart } from '../../context/CartContext';
 export default function CartSummary(props) {
 
   const {checkedItems} = props;
-  const { cartProducts } = useCart();
-  const productQuantity = cartProducts.length;
+  const { cartProducts,totalQuantity} = useCart();
+  const productQuantity = totalQuantity;
   
 
   const totalPrice = cartProducts
     .filter((p) => checkedItems[p.id])
     .reduce((accumulator, cartProduct) => {
-      return accumulator + cartProduct.price;
+      return accumulator + (cartProduct.price * cartProduct.quantity);
     },0);
   
   const discounts = 0;

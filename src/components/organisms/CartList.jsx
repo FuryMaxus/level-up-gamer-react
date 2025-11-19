@@ -6,7 +6,7 @@ export default function CartList(props) {
   
   const {checkedItems,setCheckedItems} = props;
   
-  const {removeFromCart, cartProducts } = useCart();
+  const {removeFromCart, cartProducts, increaseQuantity,decreaseQuantity} = useCart();
 
   const handleChangeOnCheck = (item) => {
     setCheckedItems((prev) => ({
@@ -70,9 +70,19 @@ const handleDeleteWithChecks = (id) => {
                 <h3>{p.name}</h3>
                 <p>{p.brand}</p>
               </div>
-              <div> 
-                {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(p.price)}
+              <div className='price-and-quantity-container'>
+                <div className='price-unit-container'>
+                  {new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(p.price)}
+                  <p>X</p>
+                  {p.quantity}
+                </div>
+                <div className='quantity-buttons-container'>
+                  <Button className = "increase-quantity" text = '+' onClick = {() => increaseQuantity(p.id)}/>
+                  <Button className = "decrease-quantity" text = '-' onClick = {() => decreaseQuantity(p.id)}/>
+                </div>
               </div>
+              
+              
               <Button text="Eliminar" onClick={() => handleDeleteWithChecks(p.id)} />
             </div>
             <hr/>
