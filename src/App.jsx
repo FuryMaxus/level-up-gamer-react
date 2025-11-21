@@ -36,6 +36,7 @@ function App() {
               <Route path='/inicio-sesion' element={<Login/>}/>
               <Route path='/registrarse' element={<SignOn/>}/>
               <Route path='/catalogo/detalle/:id' element={<ProductDetail/>}/>
+
             </Routes>
             <Footer/>
 

@@ -1,11 +1,8 @@
-import axios from "axios";
-
-
-const AUTH_URL = "http://localhost:8081/api/v1/auth"
+import apiUsers from "./ApiUsers";
 
 export async function loginService(email, password) {
   try {
-    const response = await axios.post(`${AUTH_URL}/ingreso`, { email, password });
+    const response = await apiUsers.post('/auth/ingreso', { email, password });
     return response.data;
   } catch (error) {
     console.error('Login falló:', error.response?.data || error.message);
@@ -21,7 +18,7 @@ export async function registerService(username, email, password,address) {
     if (address && address.trim() !== "") {
       body.address = address;
     }
-    const response = await axios.post(`${AUTH_URL}/registro`, body);
+    const response = await apiUsers.post('/auth/registro', body);
 
     return response.data;
 
@@ -29,6 +26,10 @@ export async function registerService(username, email, password,address) {
     console.error("Error registrando:", error.response?.data || error.message);
     throw error;
   }
+}
+
+export function getMyProfile() {
+  return apiUsers.get("/usuarios/me");
 }
 
 
