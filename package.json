@@ -13,6 +13,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",
     "clsx": "^2.1.1",
+    "jwt-decode": "^4.0.0",
     "react-router-dom": "^7.9.3",
     "react-router-hash-link": "^2.4.3"
   },

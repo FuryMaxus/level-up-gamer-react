@@ -3,14 +3,21 @@ import '../../styles/Form.css'
 import { useRef } from 'react'
 import { useState } from 'react'
 import Button from '../atoms/Button'
+import { registerService } from '../../services/AuthService'
+import { useNavigate } from 'react-router-dom'
 
 
 function SignOn() {
+
+    const navigate = useNavigate();
+
     const [name, setName] = useState('')
     const [error, setError] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const[confirmPassword, setConfirmPassword] = useState('')
+    const[address,setAddress] = useState('')
+
     const formRef = useRef(null)
     
     const[isSubmitted, setIsSubmitted] = useState(false);
@@ -64,52 +71,47 @@ function SignOn() {
       setConfirmPassword(e.target.value);
     }
 
+    const handleAddress = (e) => {
+      setAddress(e.target.value);
+    }
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
       e.preventDefault();
+      setError("");
       setIsSubmitted(true);
+      
+      const nameError = validateName(name);
+      const emailError = validateEmail(email);
+      const passwordError = validatePasswordMatch(password, confirmPassword);
 
-      const nameErrorMsg = validateName(name);
-      const emailErrorMsg = validateEmail(email);
-      const passwordErrorMsg = validatePasswordMatch(password, confirmPassword);
-      const hasError = nameErrorMsg || emailErrorMsg || passwordErrorMsg;
 
-      if(hasError){
-        setError('Error, revise los campos en rojo!');
-
-        if(emailErrorMsg){
-          setError(emailErrorMsg);
-        }
-        else if(passwordErrorMsg){
-          setError(passwordErrorMsg);
-        }
-        else if(nameErrorMsg){
-          setError(nameErrorMsg);
-        }
+      if (nameError || emailError || passwordError) {
+        setError("Corrige los errores antes de continuar.");
         return; 
       }
-      setError('');
 
-
-      setName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setIsSubmitted(false);
-
-        }
-
-        const nameHasError = validateName(name) !== '';
-        const emailHasError = validateEmail(email) !== '';
-        const passwordMatchError = validatePasswordMatch(password, confirmPassword) !== '';
-
-        const nameClass = isSubmitted && nameHasError ? 'error' : '';
-        const emailClass = isSubmitted && emailHasError ? 'error' : '';
-        const passwordClass = isSubmitted && passwordMatchError ? 'error' : '';
-        const confirmPasswordClass = isSubmitted && passwordMatchError ? 'error' : '';
-
-        const displayError = isSubmitted && (nameHasError || emailHasError || passwordMatchError) ? error : '';
+      try {
+        await registerService(name, email, password, address);
+        
+        navigate("/inicio-sesion");
       
+      } catch (err) {
+        setError("No se pudo registrar. Intenta con otro correo o usuario.");
+      }
+    };
+
+    const nameHasError = validateName(name) !== '';
+    const emailHasError = validateEmail(email) !== '';
+    const passwordMatchError = validatePasswordMatch(password, confirmPassword) !== '';
+
+    const nameClass = isSubmitted && nameHasError ? 'error' : '';
+    const emailClass = isSubmitted && emailHasError ? 'error' : '';
+    const passwordClass = isSubmitted && passwordMatchError ? 'error' : '';
+    const confirmPasswordClass = isSubmitted && passwordMatchError ? 'error' : '';
+
+    const displayError = isSubmitted && (nameHasError || emailHasError || passwordMatchError) ? error : '';
+  
   
   return (
     <form action="#" id="formulario" ref={formRef} onSubmit={handleSubmit}>
@@ -117,7 +119,7 @@ function SignOn() {
         
         
         <div className="row">
-            <label htmlfor="name">Nombre Completo</label>
+            <label htmlFor="name">Nombre Completo</label>
             <input type="text" id="nombres" placeholder="Joe Bryan Black Man"
             onChange={handleName} value={name}
             className={nameClass}
@@ -125,7 +127,7 @@ function SignOn() {
         </div>
 
         <div className="row">
-            <label htmlfor="email">E-mail</label>
+            <label htmlFor="email">E-mail</label>
             <input type="text" id="email" placeholder="joeblack777@gmail.com"
             onChange={handleEmail} value={email}
             className={emailClass}
@@ -133,12 +135,15 @@ function SignOn() {
         </div>
 
         <div className="row">
-            <label htmlfor="direccion">Dirección</label>
-            <input type="text" id="direccion" placeholder="Opcional"/>
+            <label htmlFor="direccion">Dirección</label>
+            <input type="text" id="direccion" placeholder="Opcional"
+            onChange={handleAddress} value={address}
+            />
+            
         </div>
 
         <div className="row">
-            <label htmlfor="contraseña1">Contraseña</label>
+            <label htmlFor="contraseña1">Contraseña</label>
             <input type="password" id="clave1" placeholder="Clave123456"
             onChange={handlePassword} 
             value={password}
@@ -147,7 +152,7 @@ function SignOn() {
         </div>
 
         <div className="row">
-            <label htmlfor="contraseña2">Confirmar contraseña</label>
+            <label htmlFor="contraseña2">Confirmar contraseña</label>
             <input type="password" id="clave2" placeholder="Clave123456"
             onChange={handleConfirmPassword}
             value={confirmPassword}
@@ -157,8 +162,7 @@ function SignOn() {
         </div>
 
         <p id="errores">{displayError}</p>
-  
-         <Button text = "Registrarse" ></Button>
+        <Button text = "Registrarse" type ='submit'></Button>
         
         <p>¿Ya tienes una cuenta? <a href='/inicio-sesion'>Inicia Sesión</a></p>
     </form>
