@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Button from '../atoms/Button';
 import Icon from '../atoms/Icon';
@@ -6,12 +6,24 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { useCart } from '../../context/CartContext';
 import '../../styles/Header.css'
+import { useAuth } from '../../context/AuthContext';
+
 
 export default function Header() {
 
   const { cartProducts,totalQuantity } = useCart();
+  const { isAuthenticated, logout } = useAuth();
 
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const productQuantity = totalQuantity;
+  
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  
+
 
   const headerButtonsData = [
     { text: 'Inicio', url: '/' },
@@ -20,15 +32,7 @@ export default function Header() {
     { text: 'Noticias', url: '/noticias' },
     { text: 'Acerca de', url: '/acerca-de' },
   ];
-
-  const productQuantity = totalQuantity;
   
-  const navigate = useNavigate();
-  
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-
-
   return (
     <header>
       <div id="header-top">
@@ -43,8 +47,26 @@ export default function Header() {
 
         <div id="session-buttons-container">
           <Icon path="/carrito" variant="cart-icon" iconClass="fa-solid fa-cart-shopping icono-header" quantity={productQuantity}/>
-          <Icon path="/inicio-sesion" iconClass="fa-regular fa-user icono-header"/>
-          <Icon path="/registrarse" iconClass="fa-solid fa-user-plus icono-header"/>
+          {!isAuthenticated? (
+            <>
+              <Icon path="/inicio-sesion" iconClass="fa-regular fa-user icono-header" />
+              <Icon path="/registrarse" iconClass="fa-solid fa-user-plus icono-header" />
+            </>
+          ) : (
+            <>
+              <Icon path="/perfil" iconClass="fa-solid fa-user icono-header" />
+              
+              <i 
+                className="fa-solid fa-right-from-bracket icono-header logout-icon"
+                style={{ cursor: "pointer", marginLeft: "15px" }}
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+              ></i>
+              
+            </>
+          )}
         </div>
       </div>
 

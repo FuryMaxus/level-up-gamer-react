@@ -97,19 +97,19 @@ function SignOn() {
       setConfirmPassword('');
       setIsSubmitted(false);
 
-        }
+    }
 
-        const nameHasError = validateName(name) !== '';
-        const emailHasError = validateEmail(email) !== '';
-        const passwordMatchError = validatePasswordMatch(password, confirmPassword) !== '';
+    const nameHasError = validateName(name) !== '';
+    const emailHasError = validateEmail(email) !== '';
+    const passwordMatchError = validatePasswordMatch(password, confirmPassword) !== '';
 
-        const nameClass = isSubmitted && nameHasError ? 'error' : '';
-        const emailClass = isSubmitted && emailHasError ? 'error' : '';
-        const passwordClass = isSubmitted && passwordMatchError ? 'error' : '';
-        const confirmPasswordClass = isSubmitted && passwordMatchError ? 'error' : '';
+    const nameClass = isSubmitted && nameHasError ? 'error' : '';
+    const emailClass = isSubmitted && emailHasError ? 'error' : '';
+    const passwordClass = isSubmitted && passwordMatchError ? 'error' : '';
+    const confirmPasswordClass = isSubmitted && passwordMatchError ? 'error' : '';
 
-        const displayError = isSubmitted && (nameHasError || emailHasError || passwordMatchError) ? error : '';
-      
+    const displayError = isSubmitted && (nameHasError || emailHasError || passwordMatchError) ? error : '';
+  
   
   return (
     <form action="#" id="formulario" ref={formRef} onSubmit={handleSubmit}>
