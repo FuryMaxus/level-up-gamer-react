@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+
 import './styles/App.css'
 import { BrowserRouter, Routes,Route } from 'react-router-dom'
 
@@ -15,6 +15,8 @@ import Footer from './components/organisms/Footer'
 import { CartProvider } from './context/CartContext'
 import ProductDetail from './components/pages/ProductDetail'
 import { AuthProvider } from './context/AuthContext'
+import ProtectedRoute from './utils/ProtectedRoute'
+import ProductManagement from './components/pages/ProductManagement'
 
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
 
             <Header/>
             <Routes>
+
               <Route path='/' element={<Home/>}/>
               <Route path='/acerca-de' element={<About />}/>
               <Route path='/catalogo' element={<Catalog/>}/>
@@ -36,6 +39,14 @@ function App() {
               <Route path='/inicio-sesion' element={<Login/>}/>
               <Route path='/registrarse' element={<SignOn/>}/>
               <Route path='/catalogo/detalle/:id' element={<ProductDetail/>}/>
+
+              <Route element={<ProtectedRoute allowedRoles={['ROL_ADMIN', 'ROL_EMPLEADO']} />}>
+                  <Route path='/gestion-productos' element={<ProductManagement/>}/>
+              </Route>
+
+              <Route element={<ProtectedRoute/>}>
+                  <Route path='/profile' element={<ProductManagement/>}/>
+              </Route>
 
             </Routes>
             <Footer/>
