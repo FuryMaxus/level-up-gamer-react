@@ -17,6 +17,7 @@ import ProductDetail from './components/pages/ProductDetail'
 import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './utils/ProtectedRoute'
 import ProductManagement from './components/pages/ProductManagement'
+import Profile from './components/pages/Profile'
 
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
               </Route>
 
               <Route element={<ProtectedRoute/>}>
-                  <Route path='/profile' element={<ProductManagement/>}/>
+                  <Route path='/profile' element={<Profile/>}/>
               </Route>
 
             </Routes>
