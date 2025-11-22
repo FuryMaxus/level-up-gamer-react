@@ -12,7 +12,7 @@ import { useAuth } from '../../context/AuthContext';
 export default function Header() {
 
   const { cartProducts,totalQuantity } = useCart();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout,user } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,13 +25,27 @@ export default function Header() {
   
 
 
-  const headerButtonsData = [
+  const baseButtons = [
     { text: 'Inicio', url: '/' },
     { text: 'Catalogo', url: '/catalogo' },
     { text: 'Level Up', url: '/level-up' },
     { text: 'Noticias', url: '/noticias' },
     { text: 'Acerca de', url: '/acerca-de' },
   ];
+
+  const hasProductModPermissions = isAuthenticated && user?.roles && (
+    user.roles.includes('ROL_ADMIN') || 
+    user.roles.includes('ROL_EMPLEADO')
+  );
+
+  const headerButtonsData = [...baseButtons];
+
+  if (hasProductModPermissions) {
+    headerButtonsData.push({ 
+      text: 'Gestión Productos', 
+      url: '/gestion-productos' 
+    });
+  }
   
   return (
     <header>
