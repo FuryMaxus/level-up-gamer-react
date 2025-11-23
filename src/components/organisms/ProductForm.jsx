@@ -37,19 +37,25 @@ export default function ProductForm(props) {
   }
 
   return (
-    <div className="">
+    <div className="product-form-container">
       <h3>{productToEdit ? 'Editar Producto' : 'Nuevo Producto'}</h3>
       
       <form onSubmit={handleSubmit}>
-        <input 
-          name="name"
-          type="text" 
-          placeholder="Nombre" 
-          value={data.name}
-          onChange={handleChange}
-          required 
-        />
-        <input 
+        <div className='productForm-input-conteiner'>
+          <label htmlFor="name">Nombre</label>
+          <input 
+            name="name"
+            type="text" 
+            placeholder="Nombre" 
+            value={data.name}
+            onChange={handleChange}
+            required 
+          />
+        </div>
+        
+        <div className="productForm-input-conteiner">
+          <label htmlFor="price">Precio</label>
+          <input 
           name="price"
           type="number" 
           placeholder="Precio" 
@@ -57,7 +63,11 @@ export default function ProductForm(props) {
           onChange={handleChange}
           required 
         />
-        <input 
+        </div>
+
+        <div className="productForm-input-conteiner">
+          <label htmlFor="brand">Marca</label>
+          <input 
           name="brand"
           type="text" 
           placeholder="Marca" 
@@ -65,38 +75,44 @@ export default function ProductForm(props) {
           onChange={handleChange}
           required 
         />
-
-        <div>
-          <label className="">Condición</label>
-          <select
-            name="productCondition"
-            value={data.productCondition}
-            onChange={handleChange}
-            className="w-full border p-2 rounded bg-white"
-          >
-            {Object.entries(Conditions).map(([backendKey, frontendLabel]) => (
-              <option key={backendKey} value={backendKey}>
-                {frontendLabel}  
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="">Categoría</label>
-          <select
-            name="category"
-            value={data.category}
-            onChange={handleChange}
-            className="w-full border p-2 rounded bg-white"
-          >
-            {Object.values(Categories).map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
         </div>
         
-        <input 
+        <div className="productForm-selectors-container">
+
+          <div className='productForm-selector'>
+            <label className="">Condición</label>
+            <select
+              name="productCondition"
+              value={data.productCondition}
+              onChange={handleChange}
+              className="w-full border p-2 rounded bg-white"
+            >
+              {Object.entries(Conditions).map(([backendKey, frontendLabel]) => (
+                <option key={backendKey} value={backendKey}>
+                  {frontendLabel}  
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className='productForm-selector'>
+            <label>Categoría</label>
+            <select
+              name="category"
+              value={data.category}
+              onChange={handleChange}
+              className="w-full border p-2 rounded bg-white"
+            >
+              {Object.values(Categories).map((cat) => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        
+        <div className="productForm-input-conteiner">
+          <label htmlFor="imgUrl">URL de la imagen</label>
+          <input 
           name="imgUrl"
           type="text" 
           placeholder="Url de imagen" 
@@ -104,10 +120,10 @@ export default function ProductForm(props) {
           onChange={handleChange}
           required 
         />
-
-
+        </div>
         
-        <div className="">
+
+        <div className="productForm-buttons-container">
           <button type="submit" className="bg-blue-500 text-white p-2 rounded">
             {productToEdit ? 'Actualizar' : 'Guardar'}
           </button>

@@ -32,7 +32,7 @@ td {
 }
 
 .td-name {
-  max-width: 300px;
+  max-width: 26vw;
 }
 .row-action-buttons {
   display: flex;
@@ -53,4 +53,59 @@ td {
 .row-action-buttons > button:nth-child(2) {
   background-color: red;
   color: black;
+}
+
+.product-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #39FF14;
+  border-radius: 20px;
+  padding: 1.5em;
+  text-align: center;
+  gap: 1em;
+}
+
+.product-form-container > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .5em;
+}
+
+.productForm-selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .25em;
+}
+
+.productForm-selectors-container{
+  display: flex;
+  gap: 1em;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.productForm-buttons-container {
+  display: flex;
+  gap: 1em;
+}
+
+.productForm-buttons-container > button {
+  padding: .5em 1em;
+}
+
+.productForm-input-conteiner {
+  display: flex;
+  flex-direction: column;
+  gap: .25em;
+}
+
+.btn-add-product{
+  padding: 1em;
+  font-size: 1em;
 }

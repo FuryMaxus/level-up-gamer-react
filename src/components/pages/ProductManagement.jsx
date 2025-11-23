@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import ProductService from '../../services/ProductService';
 import ProductForm from '../organisms/ProductForm';
 import '../../styles/ProductManagement.css'
+
+
 export default function ProductManagement() {
 
   const [products,setProducts] = useState([]);
@@ -61,78 +63,75 @@ export default function ProductManagement() {
 
       {view === 'lista' ? (
         <>
-          <button onClick={handleNewProduct} className="">
+          <button onClick={handleNewProduct} className="btn-add-product">
             + Agregar Producto
           </button>
-          
-  <div>
-    <table id='product-table'>
-
-      <thead>
-        <tr>
-          <th scope="col" >ID</th>
-          <th scope="col" >Imagen</th>
-          <th scope="col" >Producto</th>
-          <th scope="col" >Marca</th>
-          <th scope="col" >Categoría</th>
-          <th scope="col" >Condición</th>
-          <th scope="col" >Precio</th>
-          <th scope="col" >Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        {products.length === 0 ? (
-          <tr>
-            <td colSpan="7">No hay productos registrados.</td>
-          </tr>
-        ) : (
-          products.map((prod) => (
-            <tr key={prod.id}>
-              <td>
-                {prod.id}
-              </td>
-              <td className="img-container">
-                <img 
-                  src={prod.imgUrl} 
-                  alt={prod.name} 
-                />
-              </td>
-              <td className='td-name'>
-                {prod.name}
-              </td>
-              <td>
-                {prod.brand}
-              </td>
-              <td>
-                {prod.category}
-              </td>
-              <td>
-                {prod.productCondition}
-              </td>
-              <td>
-                ${Number(prod.price).toLocaleString()}
-              </td>
-              <td>
-                <div className='row-action-buttons'>
-                  <button 
-                    onClick={() => handleEditProduct(prod)} 
-                  >
-                    Editar
-                  </button>
-                  <button 
-                    onClick={() => handleDeleteProduct(prod.id)} 
-                  >
-                    Eliminar
-                  </button>
-                </div>
-               
-              </td>
-            </tr>
-          ))
-        )}
-      </tbody>
-    </table>
-  </div>
+          <div>
+            <table id='product-table'>
+              <thead>
+                <tr>
+                  <th scope="col" >ID</th>
+                  <th scope="col" >Imagen</th>
+                  <th scope="col" >Producto</th>
+                  <th scope="col" >Marca</th>
+                  <th scope="col" >Categoría</th>
+                  <th scope="col" >Condición</th>
+                  <th scope="col" >Precio</th>
+                  <th scope="col" >Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.length === 0 ? (
+                  <tr>
+                    <td colSpan="7">No hay productos registrados.</td>
+                  </tr>
+                ) : (
+                  products.map((prod) => (
+                    <tr key={prod.id}>
+                      <td>
+                        {prod.id}
+                      </td>
+                      <td className="img-container">
+                        <img 
+                          src={prod.imgUrl} 
+                          alt={prod.name} 
+                        />
+                      </td>
+                      <td className='td-name'>
+                        {prod.name}
+                      </td>
+                      <td>
+                        {prod.brand}
+                      </td>
+                      <td>
+                        {prod.category}
+                      </td>
+                      <td>
+                        {prod.productCondition}
+                      </td>
+                      <td>
+                        ${Number(prod.price).toLocaleString()}
+                      </td>
+                      <td>
+                        <div className='row-action-buttons'>
+                          <button 
+                            onClick={() => handleEditProduct(prod)} 
+                          >
+                            Editar
+                          </button>
+                          <button 
+                            onClick={() => handleDeleteProduct(prod.id)} 
+                          >
+                            Eliminar
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </>
       ) : (
         <ProductForm 
