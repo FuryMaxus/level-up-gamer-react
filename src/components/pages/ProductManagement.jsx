@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProductService from '../../services/ProductService';
 import ProductForm from '../organisms/ProductForm';
-
+import '../../styles/ProductManagement.css'
 export default function ProductManagement() {
 
   const [products,setProducts] = useState([]);
@@ -56,26 +56,83 @@ export default function ProductManagement() {
   };
 
   return (
-    <div className="p-5">
+    <main id="productManagement-main">
       <h1>Inventario</h1>
 
       {view === 'lista' ? (
         <>
-          <button onClick={handleNewProduct} className="bg-green-500 text-white p-2 mb-4">
+          <button onClick={handleNewProduct} className="">
             + Agregar Producto
           </button>
           
-          <ul>
-            {products.map((prod) => (
-              <li key={prod.id} className="flex justify-between border-b p-2">
-                <span>{prod.name} - ${prod.price}</span>
-                <div>
-                  <button onClick={() => handleEditProduct(prod)} className="text-blue-500 mr-2">Editar</button>
-                  <button onClick={() => handleDeleteProduct(prod.id)} className="text-red-500">Borrar</button>
+  <div>
+    <table id='product-table'>
+
+      <thead>
+        <tr>
+          <th scope="col" >ID</th>
+          <th scope="col" >Imagen</th>
+          <th scope="col" >Producto</th>
+          <th scope="col" >Marca</th>
+          <th scope="col" >Categoría</th>
+          <th scope="col" >Condición</th>
+          <th scope="col" >Precio</th>
+          <th scope="col" >Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {products.length === 0 ? (
+          <tr>
+            <td colSpan="7">No hay productos registrados.</td>
+          </tr>
+        ) : (
+          products.map((prod) => (
+            <tr key={prod.id}>
+              <td>
+                {prod.id}
+              </td>
+              <td className="img-container">
+                <img 
+                  src={prod.imgUrl} 
+                  alt={prod.name} 
+                />
+              </td>
+              <td className='td-name'>
+                {prod.name}
+              </td>
+              <td>
+                {prod.brand}
+              </td>
+              <td>
+                {prod.category}
+              </td>
+              <td>
+                {prod.productCondition}
+              </td>
+              <td>
+                ${Number(prod.price).toLocaleString()}
+              </td>
+              <td>
+                <div className='row-action-buttons'>
+                  <button 
+                    onClick={() => handleEditProduct(prod)} 
+                  >
+                    Editar
+                  </button>
+                  <button 
+                    onClick={() => handleDeleteProduct(prod.id)} 
+                  >
+                    Eliminar
+                  </button>
                 </div>
-              </li>
-            ))}
-          </ul>
+               
+              </td>
+            </tr>
+          ))
+        )}
+      </tbody>
+    </table>
+  </div>
         </>
       ) : (
         <ProductForm 
@@ -84,6 +141,6 @@ export default function ProductManagement() {
           whenCanceling={() => setView('lista')} 
         />
       )}
-    </div>
+    </main>
   )
 }
