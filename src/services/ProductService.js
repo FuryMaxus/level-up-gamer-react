@@ -6,11 +6,11 @@ const BASE_URL = 'http://localhost:8080/api/v1/productos';
 class ProductService {
 
     getAllProducts(){
-        return apiUsers.get(BASE_URL);
+        return axios.get(BASE_URL);
     }
 
     getProductById(id){
-        return apiUsers.get(`${BASE_URL}/${id}`);
+        return axios.get(`${BASE_URL}/${id}`);
     }
 
     createProduct(product) {
