@@ -1,7 +1,7 @@
 import axios from "axios";
 import apiUsers from "./ApiUsers";
 
-const BASE_URL = 'http://localhost:8080/api/v1/productos';
+const BASE_URL = 'http://35.174.36.141:8080/api/v1/productos';
 
 class ProductService {
 
