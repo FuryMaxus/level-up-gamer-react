@@ -2,11 +2,14 @@ import React, { useContext } from 'react'
 import '../../styles/Form.css'
 import { useRef } from 'react'
 import { useState } from 'react'
+
 import Button from '../atoms/Button';
 import {useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 function Login() {
+  const navigate = useNavigate();
   const [error, setError] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -52,6 +55,9 @@ function Login() {
       setError("");
       try {
         await login(email, password);
+
+        navigate('/profile');
+        
       } catch (err) {
           setError("Credenciales inválidas");
       }
