@@ -34,7 +34,6 @@ export function AuthProvider({ children }) {
     localStorage.setItem("token", data.jwt);
     setToken(data.jwt);
     
-    navigate("/");
   };
 
   const logout = () => {

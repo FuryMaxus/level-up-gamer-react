@@ -68,7 +68,7 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Icon path="/perfil" iconClass="fa-solid fa-user icono-header" />
+              <Icon path="/profile" iconClass="fa-solid fa-user icono-header" />
               
               <i 
                 className="fa-solid fa-right-from-bracket icono-header logout-icon"
