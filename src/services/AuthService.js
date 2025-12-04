@@ -33,7 +33,20 @@ export async function registerService(username, email, password,address) {
 }
 
 export function getMyProfile() {
-  return axiosProtected.get(`${URL_USUARIOS}/usuarios/me`);
+  try{
+    return axiosProtected.get(`${URL_USUARIOS}/usuarios/me`);
+  }catch (err) {
+    console.error("Error intentando obtener los datos de perfil",err.response?.data || err.message);
+  }
 }
+
+export function updateMyProfile(data) {
+  try{
+    return axiosProtected.put(`${URL_USUARIOS}/usuarios/me`,data);
+  } catch(err) {
+    console.error("Error intentando actualizar los datos de perfil",err.response?.data || err.message);
+  }
+}
+
 
 
