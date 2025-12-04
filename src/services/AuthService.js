@@ -1,8 +1,12 @@
-import apiUsers from "./ApiUsers";
+import axios from "axios";
+import axiosProtected from "../config/axiosConfig";
+import { URL_USUARIOS } from "../config/urls";
+
+
 
 export async function loginService(email, password) {
   try {
-    const response = await apiUsers.post('/auth/ingreso', { email, password });
+    const response = await axios.post(`${URL_USUARIOS}/auth/ingreso`, { email, password });
     return response.data;
   } catch (error) {
     console.error('Login falló:', error.response?.data || error.message);
@@ -18,7 +22,7 @@ export async function registerService(username, email, password,address) {
     if (address && address.trim() !== "") {
       body.address = address;
     }
-    const response = await apiUsers.post('/auth/registro', body);
+    const response = await axios.post(`${URL_USUARIOS}/auth/registro`, body);
 
     return response.data;
 
@@ -29,7 +33,7 @@ export async function registerService(username, email, password,address) {
 }
 
 export function getMyProfile() {
-  return apiUsers.get("/usuarios/me");
+  return axiosProtected.get(`${URL_USUARIOS}/usuarios/me`);
 }
 
 

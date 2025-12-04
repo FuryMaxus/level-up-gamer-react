@@ -1,28 +1,28 @@
 import axios from "axios";
-import apiUsers from "./ApiUsers";
+import axiosProtected from "../config/axiosConfig";
+import { URL_PRODUCTOS } from "../config/urls";
 
-const BASE_URL = 'http://localhost:8080/api/v1/productos';
 
 class ProductService {
 
     getAllProducts(){
-        return axios.get(BASE_URL);
+        return axios.get(URL_PRODUCTOS);
     }
 
     getProductById(id){
-        return axios.get(`${BASE_URL}/${id}`);
+        return axios.get(`${URL_PRODUCTOS}/${id}`);
     }
 
     createProduct(product) {
-        return apiUsers.post(BASE_URL,product);
+        return axiosProtected.post(URL_PRODUCTOS, product);
     }
 
     updateProduct(id,product){
-        return apiUsers.put(`${BASE_URL}/${id}`, product);
+        return axiosProtected.put(`${URL_PRODUCTOS}/${id}`, product);
     }
 
     deleteProduct(id) {
-        return apiUsers.delete(`${BASE_URL}/${id}`)
+        return axiosProtected.delete(`${URL_PRODUCTOS}/${id}`)
     }
 }
 
