@@ -18,6 +18,7 @@ import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './utils/ProtectedRoute'
 import ProductManagement from './components/pages/ProductManagement'
 import Profile from './components/pages/Profile'
+import UserManagement from './components/pages/UserManagement'
 
 
 function App() {
@@ -41,8 +42,11 @@ function App() {
               <Route path='/registrarse' element={<SignOn/>}/>
               <Route path='/catalogo/detalle/:id' element={<ProductDetail/>}/>
 
-              <Route element={<ProtectedRoute allowedRoles={['ROL_ADMIN', 'ROL_EMPLEADO']} />}>
+              <Route element={<ProtectedRoute allowedRoles={['ROL_ADMIN', 'ROL_TRABAJADOR']} />}>
                   <Route path='/gestion-productos' element={<ProductManagement/>}/>
+              </Route>
+              <Route element={<ProtectedRoute allowedRoles={['ROL_ADMIN']} />}>
+                  <Route path='/gestion-usuarios' element={<UserManagement/>}/>
               </Route>
 
               <Route element={<ProtectedRoute/>}>

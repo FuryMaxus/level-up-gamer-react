@@ -10,8 +10,10 @@ export default function DataTable(props) {
     onEdit,
     onDelete
   } = props;
-  console.log('Datos recibidos:', data);     // ¿Llega el array de productos?
-  console.log('Columnas recibidas:', columns);
+
+  if (!Array.isArray(data)) {
+    return <p>No hay datos para mostrar.</p>;
+  }
   return (
     <table className='table'>
       <thead>

@@ -32,6 +32,16 @@ export async function registerService(username, email, password,address) {
   }
 }
 
+export async function createUserByAdmin(userData) {
+    try {
+        const response = await axiosProtected.post(`${URL_USUARIOS}/auth/registro/admin`, userData);
+        return response.data;
+    } catch (error) {
+        console.error("Error creando usuario", error);
+        throw error;
+    }
+}
+
 export function getMyProfile() {
   try{
     return axiosProtected.get(`${URL_USUARIOS}/usuarios/me`);
@@ -80,13 +90,13 @@ export function deleteUser(targetEmail) {
   }
 }
 
-export function getAllUsers() {
+export async function getAllUsers() {
   try {
-    return axiosProtected.get(`${URL_USUARIOS}/usuarios`);
-  } catch (err) {
-    console.error("Error listando usuarios", err.response?.data || err.message);
-    throw err;
-  }
+        const response = await axiosProtected.get(`${URL_USUARIOS}/usuarios`);
+        return response.data; 
+    } catch (error) {
+        throw error;
+    }
 }
 
 
