@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ProductService from '../../services/ProductService';
 import ProductForm from '../organisms/ProductForm';
 import '../../styles/ProductManagement.css'
+import DataTable from '../organisms/DataTable';
 
 
 export default function ProductManagement() {
@@ -57,8 +58,27 @@ export default function ProductManagement() {
     }
   };
 
+
+  const productColumns = [
+    { header: 'ID', accessor: 'id' },
+    { 
+      header: 'Imagen', 
+      className: 'img-container',
+      render: (product) => <img src={product.imgUrl} alt={product.name} /> 
+    },
+    { header: 'Producto', accessor: 'name', className: 'td-name' },
+    { header: 'Marca', accessor: 'brand' },
+    { header: 'Categoría', accessor: 'category' },
+    { header: 'Condición', accessor: 'productCondition' },
+    { 
+      header: 'Precio', 
+      render: (product) => `$${Number(product.price).toLocaleString()}` 
+    }
+  ]
+
   return (
     <main id="productManagement-main">
+
       <h1>Inventario</h1>
 
       {view === 'lista' ? (
@@ -67,70 +87,12 @@ export default function ProductManagement() {
             + Agregar Producto
           </button>
           <div>
-            <table id='product-table'>
-              <thead>
-                <tr>
-                  <th scope="col" >ID</th>
-                  <th scope="col" >Imagen</th>
-                  <th scope="col" >Producto</th>
-                  <th scope="col" >Marca</th>
-                  <th scope="col" >Categoría</th>
-                  <th scope="col" >Condición</th>
-                  <th scope="col" >Precio</th>
-                  <th scope="col" >Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.length === 0 ? (
-                  <tr>
-                    <td colSpan="7">No hay productos registrados.</td>
-                  </tr>
-                ) : (
-                  products.map((prod) => (
-                    <tr key={prod.id}>
-                      <td>
-                        {prod.id}
-                      </td>
-                      <td className="img-container">
-                        <img 
-                          src={prod.imgUrl} 
-                          alt={prod.name} 
-                        />
-                      </td>
-                      <td className='td-name'>
-                        {prod.name}
-                      </td>
-                      <td>
-                        {prod.brand}
-                      </td>
-                      <td>
-                        {prod.category}
-                      </td>
-                      <td>
-                        {prod.productCondition}
-                      </td>
-                      <td>
-                        ${Number(prod.price).toLocaleString()}
-                      </td>
-                      <td>
-                        <div className='row-action-buttons'>
-                          <button 
-                            onClick={() => handleEditProduct(prod)} 
-                          >
-                            Editar
-                          </button>
-                          <button 
-                            onClick={() => handleDeleteProduct(prod.id)} 
-                          >
-                            Eliminar
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+           <DataTable
+            data = {products}
+            columns = {productColumns}
+            onEdit = {handleEditProduct}
+            onDelete = {handleDeleteProduct}
+           />
           </div>
         </>
       ) : (

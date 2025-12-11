@@ -40,13 +40,53 @@ export function getMyProfile() {
   }
 }
 
-export function updateMyProfile(data) {
-  try{
-    return axiosProtected.put(`${URL_USUARIOS}/usuarios/me`,data);
-  } catch(err) {
-    console.error("Error intentando actualizar los datos de perfil",err.response?.data || err.message);
+export async function updateProfile(email, data) {
+  try {
+    const response =  await axiosProtected.put(`${URL_USUARIOS}/usuarios/${email}`, data);
+    return response.data;
+  } catch (err) {
+    console.error("Error en servicio updateProfile:", err);
+    throw err; 
   }
 }
 
+
+export function changeMyPassword(currentPassword, newPassword) {
+  try {
+    const body = { currentPassword, newPassword };
+    return axiosProtected.put(`${URL_USUARIOS}/usuarios/me/password`, body);
+  } catch (err) {
+    console.error("Error cambiando password", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+export function adminResetPassword(targetEmail, newPassword) {
+  try {
+    const body = { newPassword };
+    return axiosProtected.put(`${URL_USUARIOS}/usuarios/${targetEmail}/admin-password`, body);
+  } catch (err) {
+    console.error("Error reseteando password", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+export function deleteUser(targetEmail) {
+  try {
+    return axiosProtected.delete(`${URL_USUARIOS}/usuarios/admin/${targetEmail}`);
+  } catch (err) {
+    console.error("Error eliminando usuario", err.response?.data || err.message);
+    throw err;
+  }
+}
+
+export function getAllUsers() {
+  try {
+    return axiosProtected.get(`${URL_USUARIOS}/usuarios`);
+  } catch (err) {
+    console.error("Error listando usuarios", err.response?.data || err.message);
+    throw err;
+  }
+}
 
 

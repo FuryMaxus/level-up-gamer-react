@@ -1,13 +1,20 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../styles/Profile.css'
-import { getMyProfile, updateMyProfile } from '../../services/AuthService';
+import { changeMyPassword, getMyProfile, updateProfile } from '../../services/AuthService';
 
- function Profile() {
+function Profile() {
   const [user , setUser] = useState(null);
   const[loading, setLoading] = useState(true);
   const[error, setError] = useState(null);
   const[isEditing, setIsEditing] = useState(false);
   const[formData, setFormData] = useState({});
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [passData, setPassData] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
+
 
   const fetchUserData = async () => {
     try{
@@ -34,24 +41,59 @@ import { getMyProfile, updateMyProfile } from '../../services/AuthService';
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    try{
-      updateMyProfile(formData).then(response => {
-        setUser(response.data);
-        setIsEditing(false);
-      });
-      alert(" Perfil actualizado con éxito.");
+    e.preventDefault()
+    try {
     
-    }catch(err){
-      setError("Error al actualizar. Por favor, verifica los datos.");
-      console.error("Error PUT:", err.response ? err.response.data : err.message);
-    } finally {
-      setLoading(false);
+      const datosActualizados = await updateProfile(user.email, formData);
+      
+      if (!datosActualizados) {
+          throw new Error("El servidor no devolvió los datos actualizados.");
+      }
+
+      setUser(prevUser => ({
+          ...prevUser, 
+          ...datosActualizados 
+      })); 
+
+      setIsEditing(false);
+      alert("Perfil actualizado correctamente");
+      
+    } catch (error) {
+        console.error(error);
+        alert("Error: " + (error?.response?.data || error.message));
     }
   };
+
+  const handlePassChange = (e) => {
+      setPassData({ ...passData, [e.target.name]: e.target.value });
+    };
+
+  const handlePassSubmit = async (e) => {
+    e.preventDefault();
+
+    if (passData.newPassword !== passData.confirmPassword) {
+      alert("Las nuevas contraseñas no coinciden.");
+      return;
+    }
+
+    if (passData.newPassword.length < 5) {
+      alert("La nueva contraseña debe tener como mas de 5 caracteres");
+      return;
+    }
+
+    try {
+      await changeMyPassword(passData.currentPassword, passData.newPassword);
+      
+      alert("Contraseña actualizada con éxito");
+      setIsChangingPassword(false);
+      setPassData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+
+    } catch (error) {
+      const msg = error.response?.data || "Error al cambiar contraseña";
+      alert("Error: " + msg);
+    }
+  };
+
 
   if(loading) 
     return <p>Cargando datos del usuario...</p>;
@@ -90,12 +132,61 @@ import { getMyProfile, updateMyProfile } from '../../services/AuthService';
             onChange={handleChange}
             />
           </div>
-          <button type="submit" disabled={loading}>
+          <div className='actions'>
+            <button type="submit" disabled={loading}>
             {loading ? 'Guardando...' : 'Guardar cambios'}
             </button>
-          <button type='button' onClick={() => {setIsEditing(false); setFormData(user); }}>
-            Cancelar
-          </button>
+            <button type='button' onClick={() => {setIsEditing(false); setFormData(user); }}>
+              Cancelar
+            </button>
+          </div>
+          
+        </form>
+      ) : isChangingPassword ? (
+        <form onSubmit={handlePassSubmit} className="password-form">
+          <h3>Cambiar Contraseña</h3>
+          <div>
+            <label>Contraseña Actual:</label>
+            <input 
+              type="password" 
+              name="currentPassword" 
+              value={passData.currentPassword} 
+              onChange={handlePassChange} 
+              required 
+            />
+          </div>
+
+          <div>
+            <label>Nueva Contraseña:</label>
+            <input 
+              type="password" 
+              name="newPassword" 
+              value={passData.newPassword} 
+              onChange={handlePassChange} 
+              required 
+            />
+          </div>
+
+          <div>
+            <label>Confirmar Nueva Contraseña:</label>
+            <input 
+              type="password" 
+              name="confirmPassword" 
+              value={passData.confirmPassword} 
+              onChange={handlePassChange} 
+              required 
+            />
+          </div>
+
+          <div className="actions">
+            <button type="submit">Actualizar Contraseña</button>
+            <button type="button" onClick={() => {
+                setIsChangingPassword(false);
+                setPassData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+            }}>
+              Cancelar
+            </button>
+          </div>
         </form>
       ) : (
         <div className='profile-details'>
@@ -103,9 +194,12 @@ import { getMyProfile, updateMyProfile } from '../../services/AuthService';
           <p><strong>Email:</strong>{user.email}</p>
           <p><strong>Dirección:</strong>{user.address || "No especificada"}</p>
 
-          <button onClick={() => setIsEditing(true)}>
-            Editar Perfil
-          </button>
+          <div className="actions">
+            <button onClick={() => setIsEditing(true)}>Editar Datos</button>
+            <button onClick={() => setIsChangingPassword(true)} >
+              Cambiar Contraseña
+            </button>
+          </div>
         </div>
       )}
     </div>
