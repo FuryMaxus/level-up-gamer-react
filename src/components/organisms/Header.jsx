@@ -33,19 +33,31 @@ export default function Header() {
     { text: 'Acerca de', url: '/acerca-de' },
   ];
 
-  const hasProductModPermissions = isAuthenticated && user?.roles && (
+  const isAdmin = isAuthenticated && user?.roles && (
+    user.roles.includes('ROL_ADMIN') 
+  );
+
+  const isWorker = isAuthenticated && user?.roles && (
     user.roles.includes('ROL_ADMIN') || 
-    user.roles.includes('ROL_EMPLEADO')
+    user.roles.includes('ROL_TRABAJADOR')
   );
 
   const headerButtonsData = [...baseButtons];
 
-  if (hasProductModPermissions) {
+  if (isAdmin || isWorker) {
     headerButtonsData.push({ 
       text: 'Gestión Productos', 
       url: '/gestion-productos' 
     });
   }
+
+  if(isAdmin){
+    headerButtonsData.push({ 
+      text: 'Gestion Usuarios', 
+      url: '/gestion-usuarios' 
+    });
+  }
+  
   
   return (
     <header>
