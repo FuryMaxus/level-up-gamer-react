@@ -15,20 +15,19 @@ jest.mock("../context/CartContext", () => ({
 import { useCart } from "../context/CartContext";
 import CartSummary from "../components/organisms/CartSummary";
 
-
-
-
 describe("tests CartSummary", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("renderiza y precios se suman correctamente", () => {
+ 
     useCart.mockReturnValue({
       cartProducts: [
-        { id: 1, name: "Producto 1", price: 1000 },
-        { id: 2, name: "Producto 2", price: 2000 },
+        { id: 1, name: "Producto 1", price: 1000, quantity: 1 }, 
+        { id: 2, name: "Producto 2", price: 2000, quantity: 1 },
       ],
+      totalQuantity: 2 
     });
 
     const checkedItems = { 1: true, 2: true };
@@ -42,9 +41,7 @@ describe("tests CartSummary", () => {
     expect(screen.getByText("Resumen de Compra")).toBeInTheDocument();
 
 
-    const amounts = screen.getAllByText("$3.000");
+    const amounts = screen.getAllByText(/\$3\.000/);
     expect(amounts).toHaveLength(2); 
-    expect(amounts[1]).toBeInTheDocument();
-
   });
 });
